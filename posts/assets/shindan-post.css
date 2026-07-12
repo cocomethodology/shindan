@@ -1,0 +1,121 @@
+:root{
+  --ink:#0F1114;
+  --surface:#161A1F;
+  --line:#2A2F36;
+  --text:#E6E3DC;
+  --muted:#878C94;
+  --amber:#C08A3E;      /* 温度：琥珀 */
+  --slate:#7E97A8;      /* 距離：氷 */
+  --accent:var(--slate);
+  --serif:"Shippori Mincho B1", serif;
+  --sans:"Zen Kaku Gothic New", system-ui, sans-serif;
+  --latin:"Cormorant Garamond", serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+  display:flex;justify-content:center;
+  padding:clamp(28px,6vw,72px) 20px 88px;
+}
+#app{width:100%;max-width:560px}
+
+.eyebrow{
+  font-family:var(--latin);
+  font-style:italic;
+  font-size:15px;
+  letter-spacing:.08em;
+  color:var(--muted);
+}
+.code{font-family:var(--latin);font-size:14px;letter-spacing:.22em;color:var(--accent);margin-top:6px}
+.post-title{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(26px,6.2vw,36px);
+  line-height:1.6;
+  letter-spacing:.04em;
+  margin:14px 0 22px;
+}
+.intro{margin-bottom:8px}
+.intro p{
+  font-family:var(--serif);
+  font-size:clamp(16px,4vw,18px);
+  line-height:2;
+  letter-spacing:.03em;
+  color:var(--text);
+  margin-bottom:14px;
+}
+.rule{height:1px;background:var(--line);margin:34px 0}
+
+.qtext{
+  font-family:var(--serif);font-size:clamp(19px,4.6vw,23px);
+  line-height:1.85;letter-spacing:.03em;margin-bottom:30px;
+}
+
+/* ---- 選択カード ---- */
+.card{
+  display:block;width:100%;text-align:left;cursor:pointer;
+  background:transparent;color:var(--text);
+  border:1px solid var(--line);
+  padding:20px 22px;margin-bottom:12px;
+  font-family:var(--sans);font-size:16px;font-weight:300;line-height:1.75;
+  letter-spacing:.02em;
+  transition:border-color .35s ease, background .35s ease, transform .35s ease;
+}
+.card:hover,.card:focus-visible{
+  border-color:var(--accent);
+  background:var(--surface);
+  transform:translateX(3px);
+  outline:none;
+}
+.card .k{
+  display:block;font-family:var(--latin);font-size:13px;
+  letter-spacing:.18em;color:var(--muted);margin-bottom:6px;
+}
+.card:hover .k{color:var(--accent)}
+
+/* ---- 読み（結果） ---- */
+.tname{font-family:var(--serif);font-size:clamp(23px,5.6vw,30px);letter-spacing:.05em;margin:10px 0 22px;font-weight:400;line-height:1.6}
+.reading p{font-size:15.5px;letter-spacing:.03em;margin-bottom:16px}
+.label{font-family:var(--latin);font-size:12px;letter-spacing:.2em;color:var(--muted);margin-bottom:14px}
+.closing p{font-size:15px;letter-spacing:.03em;color:var(--muted);margin-bottom:14px}
+.closing p:last-child{color:var(--text)}
+
+.cta{
+  display:block;text-align:center;text-decoration:none;
+  padding:17px;margin-bottom:10px;font-size:15px;letter-spacing:.06em;
+  border:1px solid var(--line);color:var(--text);
+  transition:border-color .3s, background .3s;
+}
+.cta:hover{border-color:var(--accent);background:var(--surface)}
+.cta.primary{background:var(--accent);border-color:var(--accent);color:#0F1114;font-weight:500}
+.cta.primary:hover{opacity:.88;background:var(--accent)}
+.cta small{display:block;font-size:12px;letter-spacing:.04em;opacity:.72;margin-top:3px;font-weight:300}
+.ghost{
+  background:none;border:none;color:var(--muted);font-family:var(--sans);
+  font-size:13px;letter-spacing:.06em;cursor:pointer;padding:10px 0;text-decoration:underline;
+  text-underline-offset:4px;
+}
+.ghost:hover{color:var(--text)}
+.fade{animation:fade .7s ease both}
+.sig{margin-top:48px;font-size:12.5px;line-height:2;letter-spacing:.05em;color:var(--muted)}
+.sig span{font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.14em}
+
+/* ---- 一覧（index） ---- */
+.list-item{
+  display:block;text-decoration:none;color:var(--text);
+  border:1px solid var(--line);padding:20px 22px;margin-bottom:12px;
+  transition:border-color .35s ease, background .35s ease, transform .35s ease;
+}
+.list-item:hover{border-color:var(--accent);background:var(--surface);transform:translateX(3px)}
+.list-item .k{display:block;font-family:var(--latin);font-size:13px;letter-spacing:.16em;color:var(--muted);margin-bottom:6px}
+.list-item:hover .k{color:var(--accent)}
+.list-item .t{font-family:var(--serif);font-size:18px;letter-spacing:.03em;line-height:1.6}
+
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
