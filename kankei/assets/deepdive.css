@@ -1,0 +1,95 @@
+:root{
+  --paper:#fbf8f1; --card:#f1ece1; --card-2:#efe7d8; --ink:#2b2620;
+  --muted:#8a7f70; --faint:#b6a68f; --amber:#a8763c; --amber-soft:#c69a5e; --line:#e4dccf; --line-2:#d8cdb8;
+  --serif:"Shippori Mincho B1", serif;
+  --sans:"Zen Kaku Gothic New", system-ui, sans-serif;
+  --latin:"Cormorant Garamond", serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{
+  background:var(--paper); color:var(--ink); font-family:var(--sans); font-weight:400; line-height:1.9;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  display:flex; justify-content:center; padding:clamp(24px,7vw,56px) 20px calc(72px + env(safe-area-inset-bottom));
+}
+#app{width:100%;max-width:500px}
+
+.eyebrow{font-family:var(--latin);font-style:italic;font-size:16px;letter-spacing:.06em;color:var(--amber)}
+.kicker{font-family:var(--latin);font-size:13px;letter-spacing:.14em;color:var(--muted);margin-top:6px}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(25px,6.6vw,32px);line-height:1.5;letter-spacing:.03em;margin:14px 0 18px;text-wrap:balance}
+.lede{color:var(--muted);font-size:15px;letter-spacing:.02em}
+.rule{height:1px;background:var(--line-2);margin:32px 0}
+
+.start{display:block;width:100%;text-align:center;cursor:pointer;background:var(--amber);color:#fff;
+  border:1px solid var(--amber);border-radius:7px;padding:17px;font-family:var(--sans);font-size:16px;font-weight:500;
+  letter-spacing:.06em;transition:opacity .25s,transform .15s;-webkit-tap-highlight-color:transparent}
+.start:hover{opacity:.9}.start:active{transform:translateY(1px)}
+.start small{display:block;font-size:12px;font-weight:300;opacity:.82;margin-top:4px}
+
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.qnum{font-family:var(--latin);font-size:15px;letter-spacing:.14em;color:var(--muted)}
+.qnum b{color:var(--amber);font-weight:400}
+.ticks{display:flex;gap:5px;flex:1;margin-left:16px}
+.tick{flex:1;height:2px;background:var(--line-2);border-radius:2px;transition:background .5s}
+.tick.on{background:var(--amber)}
+
+/* 1軸の現在地 */
+.scale{margin:8px 0 26px}
+.scale svg{width:100%;display:block}
+.scale text{font-family:var(--latin);font-size:11px;letter-spacing:.12em;fill:var(--muted)}
+.scale .jp{font-family:var(--sans);font-size:10px;letter-spacing:.06em;fill:var(--faint)}
+.track{stroke:var(--line-2);stroke-width:2;stroke-linecap:round}
+.dot{fill:var(--amber);transition:cx .8s cubic-bezier(.22,1,.36,1)}
+.halo{fill:var(--amber);opacity:.16;transition:cx .8s cubic-bezier(.22,1,.36,1)}
+
+.qtext{font-family:var(--serif);font-size:clamp(19px,5vw,23px);font-weight:500;line-height:1.8;letter-spacing:.03em;margin-bottom:22px;text-wrap:balance}
+
+.card{display:block;width:100%;text-align:left;cursor:pointer;background:var(--card);color:var(--ink);
+  border:1px solid var(--line);border-radius:7px;padding:18px 20px;margin-bottom:11px;
+  font-family:var(--sans);font-size:16px;font-weight:400;line-height:1.7;letter-spacing:.01em;
+  transition:border-color .3s,background .3s,transform .2s,box-shadow .3s;-webkit-tap-highlight-color:transparent}
+.card:hover,.card:focus-visible{border-color:var(--amber);background:#f6f0e6;transform:translateY(-1px);box-shadow:0 6px 18px -12px rgba(120,86,40,.5);outline:none}
+.card:active{transform:translateY(0)}
+.card .k{display:inline-block;font-family:var(--latin);font-size:14px;letter-spacing:.14em;color:var(--amber);margin-right:10px}
+
+.ghost{background:none;border:none;color:var(--muted);font-family:var(--sans);font-size:13px;letter-spacing:.05em;
+  cursor:pointer;padding:12px 0;text-decoration:underline;text-underline-offset:4px;-webkit-tap-highlight-color:transparent}
+.ghost:hover{color:var(--ink)}
+
+/* 結果 */
+.r-code{font-family:var(--latin);font-size:14px;letter-spacing:.18em;color:var(--amber)}
+.r-name{font-family:var(--serif);font-size:clamp(30px,8.4vw,40px);font-weight:600;letter-spacing:.05em;margin:8px 0 6px;line-height:1.35}
+.r-sub{font-family:var(--serif);font-size:17px;color:var(--muted);letter-spacing:.03em;margin-bottom:6px}
+.r-deg{font-family:var(--latin);font-size:13px;letter-spacing:.1em;color:var(--faint);font-variant-numeric:tabular-nums}
+.body p{font-size:15px;letter-spacing:.02em;margin-bottom:15px;line-height:1.95}
+.body p.strong{font-family:var(--serif);font-size:16.5px;font-weight:500;color:var(--ink)}
+.bridge{background:var(--card-2);border:1px solid var(--line-2);border-radius:9px;padding:18px 20px;margin:6px 0 18px}
+.bridge p{font-size:15px;line-height:1.9;margin-bottom:0;color:var(--ink)}
+.bridge .lead{color:var(--muted);font-size:13.5px;margin-bottom:10px}
+
+.cta{display:block;text-align:center;text-decoration:none;border-radius:7px;padding:18px;margin-top:4px;
+  font-size:16px;letter-spacing:.05em;background:var(--amber);border:1px solid var(--amber);color:#fff;font-weight:500;
+  transition:opacity .25s,transform .15s}
+.cta:hover{opacity:.9}.cta:active{transform:translateY(1px)}
+.cta small{display:block;font-size:12px;font-weight:300;opacity:.85;margin-top:4px}
+
+.sig{margin-top:38px;font-size:12px;line-height:2;letter-spacing:.04em;color:var(--faint);text-align:center}
+.sig span{font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.12em}
+
+/* 8問完了のインタースティシャル */
+.done-wrap{text-align:center;padding:14px 0 4px}
+.done-mark{font-family:var(--latin);font-size:14px;letter-spacing:.24em;color:var(--amber);margin-bottom:16px}
+.done-check{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--amber);margin:0 auto 20px;position:relative}
+.done-check::after{content:"";position:absolute;left:18px;top:15px;width:12px;height:22px;
+  border-right:2px solid var(--amber);border-bottom:2px solid var(--amber);transform:rotate(40deg)}
+.done-h{font-family:var(--serif);font-size:clamp(23px,6.2vw,29px);font-weight:600;letter-spacing:.04em;line-height:1.5;margin-bottom:12px}
+.done-sub{color:var(--muted);font-size:14.5px;letter-spacing:.02em;margin-bottom:28px}
+
+/* 結果ページ冒頭バナー */
+.result-banner{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.result-banner .rb-line{flex:1;height:1px;background:var(--line-2)}
+.result-banner .rb-label{font-family:var(--serif);font-size:14px;font-weight:600;letter-spacing:.3em;color:var(--amber);white-space:nowrap}
+
+.fade{animation:fade .55s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

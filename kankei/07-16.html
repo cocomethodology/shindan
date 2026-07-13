@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>動揺したときの深堀り診断 ｜ 関係の温度と距離を整える技術</title>
+<meta name="description" content="「は？」と、頭が真っ白になった。動揺の出方を、8つの問いで。あなたがどっち側かが出る。">
+<meta property="og:title" content="「は？」と頭が真っ白になったあと──8問で、どっち側か出る">
+<meta property="og:description" content="動揺したあと、どう動くか。同じ出来事でも、後味はそこで変わる。">
+<meta name="theme-color" content="#fbf8f1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/deepdive.css">
+</head>
+<body>
+<div id="app"></div>
+<script>
+window.DEEPDIVE = {
+  date:"2026-07-16", weekday:"木", theme:"動揺したとき",
+  home:{
+    eyebrow:"The Art of Temperature & Distance",
+    title:"「は？」と、<br>頭が真っ白になった。",
+    lede:"動揺したあと、どう動くか。同じ出来事でも、後味はそこで変わる。8つの問いで、あなたの温度がどっち側かが出る。所要 約1分。"
+  },
+  axis:{ left:{name:"しまう", en:"HOLD IN"}, right:{name:"出す", en:"LET OUT"} },
+  q:[
+    { t:"「は？」と思った瞬間。",
+      a:{label:"感情が、そのまま声や態度に出る", side:"A"},
+      b:{label:"顔に出さないよう、まず抑える", side:"B"} },
+    { t:"動揺すると。",
+      a:{label:"その場で、感じたことが漏れてしまう", side:"A"},
+      b:{label:"落ち着くまで、外には出さない", side:"B"} },
+    { t:"傷ついたとき、周りには。",
+      a:{label:"わかるくらい、態度に出てしまう", side:"A"},
+      b:{label:"気づかれないように、平気なふりをする", side:"B"} },
+    { t:"怒りが湧いたとき。",
+      a:{label:"熱いうちに、言葉になって出る", side:"A"},
+      b:{label:"一度飲み込んで、あとで考える", side:"B"} },
+    { t:"うれしいことがあると。",
+      a:{label:"そのまま、大きく出る", side:"A"},
+      b:{label:"控えめに、内に留める", side:"B"} },
+    { t:"揺れた自分を。",
+      a:{label:"隠しきれない。出てしまう", side:"A"},
+      b:{label:"見せたくない。平気を装う", side:"B"} },
+    { t:"感情と行動のあいだに。",
+      a:{label:"隙間がない。感じたら、もう出ている", side:"A"},
+      b:{label:"一拍置ける。出す前に、選べる", side:"B"} },
+    { t:"あとで振り返ると。",
+      a:{label:"出しすぎたな、と思うことが多い", side:"A"},
+      b:{label:"しまいすぎたな、と思うことが多い", side:"B"} }
+  ],
+  results:{
+    A:{ name:"出す側", sub:"感じたまま、外に出る",
+      body:[
+        "動揺した瞬間、感情が思考より先に外へ出る。隠せないのは、正直さでもある。",
+        "ただ、感情の速度が思考を追い越すと、渡し方を選ぶ前に、相手に届いてしまう。",
+        "強さとは、揺れないことじゃない。揺れても、渡す前に一拍を置けることだ。"
+      ],
+      bridge:"じゃあ、その一拍を、どこに、どうやって挟むのか。出す力はある。あとは順番だけだ。" },
+    B:{ name:"しまう側", sub:"揺れても、見せない",
+      body:[
+        "動揺しても、顔に出さずにいられる。それは身につけた強さだ。",
+        "ただ、平気なふりは、打撃を「なかったこと」にしてしまう。変わらないことと、傷ついていないことは、別の話だ。",
+        "受けたものは受けた、と自分にだけは認めていい。しまうことと、無かったことにするのは、違う。"
+      ],
+      bridge:"じゃあ、しまった感情を、どこで、誰に、少しだけ出すのか。ゆるめる順番には、向きがある。" }
+  }
+};
+</script>
+<script src="assets/deepdive.js"></script>
+</body>
+</html>
