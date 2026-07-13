@@ -147,9 +147,36 @@
     document.getElementById("see").onclick = function () { result(); window.scrollTo({ top: 0, behavior: "smooth" }); };
   }
 
+  /* 5つ目の状態：中心（整っている人）。2×2は中心を表現できないため分離。 */
+  function resultCenter(ts, ds) {
+    var CC = D.CENTER;
+    var tName = nameOf(TEMP_NAMES, ts), dName = nameOf(DIST_NAMES, ds);
+    var body = CC.body.map(function (p, i) {
+      return '<p' + (i === CC.body.length - 1 ? ' class="strong"' : '') + '>' + p + '</p>';
+    }).join("");
+    app.innerHTML = '<div class="fade">'
+      + '<div class="result-banner"><span class="rb-line"></span><span class="rb-label">診断結果</span><span class="rb-line"></span></div>'
+      + '<p class="r-code">YOUR TYPE ── ' + D.domainLabel + '</p>'
+      + '<h2 class="r-name">' + CC.name + '</h2>'
+      + '<p class="r-tag">' + CC.tag + '</p>'
+      + '<div class="axes">'
+        + '<div class="axis"><p class="a-label">TEMP ／ 温度</p><p class="a-name">' + tName + '</p><p class="a-score">' + ts + ' ／ 32</p></div>'
+        + '<div class="axis"><p class="a-label">DIST ／ 距離</p><p class="a-name">' + dName + '</p><p class="a-score">' + ds + ' ／ 32</p></div>'
+      + '</div>'
+      + field(0, 0, false)
+      + '<div class="block"><div class="body">' + body + '</div></div>'
+      + '<div class="block"><div class="answer"><p class="a-q">' + CC.question + '</p></div></div>'
+      + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="' + HUB + '">診断一覧へ</a></div>'
+      + '<p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>'
+      + '</div>';
+    document.getElementById("again").onclick = function () { idx = 0; answers = []; home(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  }
+
   function result() {
     var ts = 0, ds = 0;
     for (var i = 0; i < answers.length; i++) { if (answers[i]) { ts += answers[i].temp; ds += answers[i].dist; } }
+    var C = D.center;
+    if (C && D.CENTER && ts >= C.tLo && ts <= C.tHi && ds >= C.dLo && ds <= C.dHi) { resultCenter(ts, ds); return; }
     var tempHigh = ts >= TEMP_CUT, distHigh = ds >= DIST_CUT;
     var key = (tempHigh ? "H" : "L") + (distHigh ? "H" : "L");
     var T = TYPES[key];
