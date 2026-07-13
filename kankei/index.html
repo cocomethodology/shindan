@@ -3,19 +3,105 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>関係の温度と距離を整える技術 ｜ 恋愛と関係の診断</title>
-<meta name="description" content="8つの問いで、いまの温度と距離を確かめる。恋愛と関係のための診断。">
-<meta property="og:title" content="関係の温度と距離を整える技術 ｜ 恋愛と関係の診断">
-<meta property="og:description" content="8つの問いで、いまどこに立っているかが出る。">
+<title>恋愛と関係の診断 ｜ 関係の温度と距離を整える技術</title>
+<meta name="description" content="気になる問いから。どれも8問で、いまどこに立っているかが出る。">
+<meta property="og:title" content="恋愛と関係の診断 ｜ 気になる問いから">
+<meta property="og:description" content="感情の温度と、相手との距離。8問で、いまどこに立っているかが出る。">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#fbf8f1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/kankei.css">
+<style>
+  :root{
+    --paper:#fbf8f1; --card:#f6f0e6; --card-2:#efe7d8; --ink:#2b2620;
+    --muted:#8a7f70; --faint:#b6a68f; --amber:#a8763c; --line:#e4dccf; --line-2:#d8cdb8;
+    --serif:"Shippori Mincho B1", serif;
+    --sans:"Zen Kaku Gothic New", system-ui, sans-serif;
+    --latin:"Cormorant Garamond", serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.85;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    display:flex;justify-content:center;padding:clamp(28px,7vw,60px) 20px calc(72px + env(safe-area-inset-bottom))}
+  #app{width:100%;max-width:520px}
+
+  .eyebrow{font-family:var(--latin);font-style:italic;font-size:16px;letter-spacing:.06em;color:var(--amber)}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(27px,7vw,34px);line-height:1.45;letter-spacing:.03em;margin:14px 0 16px;text-wrap:balance}
+  .lede{color:var(--muted);font-size:15px;letter-spacing:.02em;margin-bottom:6px}
+  .rule{height:1px;background:var(--line-2);margin:30px 0 26px}
+
+  .list{display:flex;flex-direction:column;gap:12px}
+  .item{display:block;text-decoration:none;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:9px;padding:18px 20px;
+    transition:border-color .25s ease, background .25s ease, transform .18s ease, box-shadow .25s ease;
+    -webkit-tap-highlight-color:transparent}
+  .item:hover,.item:focus-visible{border-color:var(--amber);background:#f7f1e7;transform:translateY(-1px);
+    box-shadow:0 7px 20px -14px rgba(120,86,40,.55);outline:none}
+  .item .theme{font-family:var(--latin);font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:7px}
+  .item .hook{font-family:var(--serif);font-size:clamp(16px,4.2vw,18px);font-weight:500;line-height:1.6;letter-spacing:.02em;text-wrap:balance}
+  .item .go{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+  .item .go .n{font-size:12px;color:var(--faint);letter-spacing:.04em}
+  .item .go .arw{font-family:var(--latin);font-size:16px;color:var(--amber);transition:transform .2s ease}
+  .item:hover .go .arw{transform:translateX(4px)}
+
+  .sig{margin-top:38px;font-size:12.5px;line-height:2;letter-spacing:.05em;color:var(--faint);text-align:center}
+  .sig span{font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.12em}
+
+  .fade{animation:fade .6s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-<div id="app"></div>
-<script src="assets/kankei.js"></script>
+<div id="app">
+  <div class="fade">
+    <p class="eyebrow">The Art of Temperature &amp; Distance</p>
+    <h1>気になる問いから。</h1>
+    <p class="lede">感情の温度と、相手との距離。どの問いも、8問で、いまどこに立っているかが出る。所要 約2分。ひとつ、選んでみて。</p>
+    <div class="rule"></div>
+
+    <nav class="list">
+      <a class="item" href="/kankei/07-14.html">
+        <p class="theme">好条件と好意</p>
+        <p class="hook">「良くしてくれるのに、好きになれない」</p>
+        <div class="go"><span class="n">8問・約2分</span><span class="arw">はじめる →</span></div>
+      </a>
+      <a class="item" href="/kankei/07-15.html">
+        <p class="theme">言葉と行動のズレ</p>
+        <p class="hook">「今度は絶対に変える」を、もう何回聞いた？</p>
+        <div class="go"><span class="n">8問・約2分</span><span class="arw">はじめる →</span></div>
+      </a>
+      <a class="item" href="/kankei/07-16.html">
+        <p class="theme">動揺したとき</p>
+        <p class="hook">「は？」と、頭が真っ白になった。</p>
+        <div class="go"><span class="n">8問・約2分</span><span class="arw">はじめる →</span></div>
+      </a>
+      <a class="item" href="/kankei/07-17.html">
+        <p class="theme">愛の受け取り方</p>
+        <p class="hook">「そんなに大事にしてくれなくていいのに」</p>
+        <div class="go"><span class="n">8問・約2分</span><span class="arw">はじめる →</span></div>
+      </a>
+      <a class="item" href="/kankei/07-18.html">
+        <p class="theme">又聞き</p>
+        <p class="hook">「〇〇さんが、あなたのことこう言ってたよ」</p>
+        <div class="go"><span class="n">8問・約2分</span><span class="arw">はじめる →</span></div>
+      </a>
+      <a class="item" href="/kankei/07-19.html">
+        <p class="theme">指摘の仕方</p>
+        <p class="hook">「もうこれで最後にして」──また同じ約束を交わした。</p>
+        <div class="go"><span class="n">8問・約2分</span><span class="arw">はじめる →</span></div>
+      </a>
+      <a class="item" href="/kankei/07-20.html">
+        <p class="theme">こじれた関係の戻し方</p>
+        <p class="hook">こじれた関係を、少しだけ整え直してみる。</p>
+        <div class="go"><span class="n">8問・約2分</span><span class="arw">はじめる →</span></div>
+      </a>
+    </nav>
+
+    <p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>
+  </div>
+</div>
 </body>
 </html>

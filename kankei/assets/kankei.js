@@ -220,6 +220,7 @@
     var lede = h.lede || "関係がうまくいかないとき、原因は愛情の量でも相性でもない。感情の温度と、相手との距離。その2つの立ち位置にある。8つの問いで、いまどこに立っているかが出る。所要 約2分。";
     var startSmall = h.startSmall || "1問ずつ・全8問・単一選択";
     app.innerHTML = '<div class="fade">'
+      + '<a class="hub-back" href="/kankei">&larr; 診断をえらぶ</a>'
       + '<p class="eyebrow">' + eyebrow + '</p>'
       + kicker
       + '<h1>' + title + '</h1>'
