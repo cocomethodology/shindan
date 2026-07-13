@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>診断一覧 ｜ 関係の温度と距離を整える技術</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#fbf8f1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fbf8f1; --card:#f6f0e6; --card-2:#efe7d8; --ink:#2b2620;
+    --muted:#8a7f70; --faint:#b6a68f; --amber:#a8763c; --line:#e4dccf; --line-2:#d8cdb8;
+    --serif:"Shippori Mincho B1", serif;
+    --sans:"Zen Kaku Gothic New", system-ui, sans-serif;
+    --latin:"Cormorant Garamond", serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.8;
+    -webkit-font-smoothing:antialiased;padding:clamp(24px,5vw,48px) clamp(16px,4vw,28px) 96px}
+  .wrap{max-width:760px;margin:0 auto}
+
+  .eyebrow{font-family:var(--latin);font-style:italic;font-size:15px;letter-spacing:.06em;color:var(--amber)}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(24px,5vw,32px);letter-spacing:.03em;margin:10px 0 10px}
+  .lede{font-size:14px;color:var(--muted);max-width:64ch}
+  .lede code{font-family:var(--latin);background:var(--card);padding:1px 6px;border-radius:4px;color:var(--ink)}
+  .rule{height:1px;background:var(--line-2);margin:26px 0}
+
+  .week{margin-top:30px}
+  .week-head{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}
+  .week-title{font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:.03em}
+  .week-count{font-family:var(--latin);font-size:13px;letter-spacing:.1em;color:var(--faint)}
+
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line-2);border-radius:8px;overflow:hidden}
+  thead th{font-family:var(--latin);font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;
+    text-align:left;padding:11px 16px;background:var(--card-2);border-bottom:1px solid var(--line-2);font-weight:400}
+  tbody td{padding:13px 16px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:var(--card)}
+  .c-date{font-family:var(--latin);letter-spacing:.06em;color:var(--amber);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .c-wd{color:var(--muted);font-size:12px;text-align:center}
+  .c-theme{font-family:var(--serif);letter-spacing:.02em}
+  .c-open{text-align:right;white-space:nowrap}
+  .c-open a{display:inline-block;text-decoration:none;color:#fff;background:var(--amber);border:1px solid var(--amber);
+    border-radius:6px;padding:6px 14px;font-size:13px;letter-spacing:.04em;transition:opacity .2s}
+  .c-open a:hover{opacity:.88}
+
+  .other{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+  .other a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line-2);border-radius:6px;
+    padding:9px 14px;font-size:13px;letter-spacing:.02em;transition:border-color .2s}
+  .other a:hover{border-color:var(--amber)}
+  .other a .k{font-family:var(--latin);font-size:11px;letter-spacing:.1em;color:var(--muted);display:block}
+
+  .note{margin-top:30px;font-size:12.5px;color:var(--faint);line-height:1.9;border-top:1px solid var(--line);padding-top:18px}
+  .note code{font-family:var(--latin);color:var(--muted)}
+  .sig{margin-top:26px;font-size:12px;color:var(--faint);font-family:var(--latin);font-style:italic;letter-spacing:.1em}
+
+  @media (max-width:520px){ .c-wd{display:none} thead th.h-wd{display:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">The Art of Temperature &amp; Distance</p>
+    <h1>診断一覧</h1>
+    <p class="lede">恋愛と関係の診断（曜日別入口）の一覧。各行が、その日の投稿から来る読者の着地先。<code>/kankei/MM-DD</code> は、その日の問いを1問目にして本体診断（温度×距離の4タイプ）を回す。</p>
+    <div class="rule"></div>
+  </header>
+
+  <main id="weeks"></main>
+
+  <div class="other" id="other"></div>
+
+  <p class="note">
+    <b>追加の仕方（これから作る分）：</b> ① <code>kankei/MM-DD.html</code> を作る（<code>window.KANKEI={start,home}</code> を置くだけ） → ② 下の <code>WEEKS</code> 配列に1行足す。<br>
+    このページは <code>noindex</code>・管理／確認用。読者導線（<code>/kankei</code> 本体）とは分離。
+  </p>
+  <p class="sig">Coco Methodology</p>
+</div>
+
+<script>
+/* ここに週を積んでいく。新しい曜日別診断を作ったら days に1行足すだけ。 */
+var WEEKS = [
+  { label:"2026-07-14 → 07-20（火〜月）", days:[
+    { d:"2026-07-14", wd:"火", theme:"好条件と好意",         url:"07-14.html" },
+    { d:"2026-07-15", wd:"水", theme:"言葉と行動のズレ",     url:"07-15.html" },
+    { d:"2026-07-16", wd:"木", theme:"動揺したとき",         url:"07-16.html" },
+    { d:"2026-07-17", wd:"金", theme:"愛の受け取り方",       url:"07-17.html" },
+    { d:"2026-07-18", wd:"土", theme:"又聞き",               url:"07-18.html" },
+    { d:"2026-07-19", wd:"日", theme:"指摘の仕方",           url:"07-19.html" },
+    { d:"2026-07-20", wd:"月", theme:"こじれた関係の戻し方", url:"07-20.html" }
+  ]}
+];
+
+var OTHER = [
+  { k:"MASTER", label:"週まとめ診断（入口なし）", url:"./" },
+  { k:"ARCHIVE", label:"手記アーカイブ（返信欄）", url:"../posts/kankei/" }
+];
+
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+document.getElementById("weeks").innerHTML = WEEKS.map(function(w){
+  var rows = w.days.map(function(x){
+    return '<tr>'
+      + '<td class="c-date">'+esc(x.d)+'</td>'
+      + '<td class="c-wd">'+esc(x.wd)+'</td>'
+      + '<td class="c-theme">'+esc(x.theme)+'</td>'
+      + '<td class="c-open"><a href="'+x.url+'">診断を開く</a></td>'
+      + '</tr>';
+  }).join("");
+  return '<section class="week">'
+    + '<div class="week-head"><span class="week-title">'+esc(w.label)+'</span><span class="week-count">'+w.days.length+' 本</span></div>'
+    + '<table><thead><tr><th>Date</th><th class="h-wd">曜</th><th>テーマ</th><th></th></tr></thead>'
+    + '<tbody>'+rows+'</tbody></table>'
+    + '</section>';
+}).join("");
+
+document.getElementById("other").innerHTML = OTHER.map(function(o){
+  return '<a href="'+o.url+'"><span class="k">'+esc(o.k)+'</span>'+esc(o.label)+'</a>';
+}).join("");
+</script>
+</body>
+</html>
