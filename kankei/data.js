@@ -1,18 +1,13 @@
-/* =====================================================================
-   関係の温度と距離を整える技術 ── 恋愛と関係の診断（共有エンジン）
-   温度×距離の2軸を、全8問が同時に測る。単一選択 → 4タイプ。
-   window.KANKEI = { start:0..6|null, home:{...} } で入口を切り替える。
-   start を指定すると、その日の問いを1問目にして残りへ進む（残り7問＋Q8）。
-   ===================================================================== */
-(function () {
-  "use strict";
-  var CFG = window.KANKEI || {};
-  var MEMBERSHIP = "https://note.com/coconocanvas/membership?from=self";
+/* 恋愛と関係の診断 ── ドメインデータ（共有エンジン /assets/shindan.js が読む） */
+window.SHINDAN = {
+  domainLabel: "恋愛と関係",
+  hubUrl: "/kankei",
+  ctaLabel: "チームCoco ―― 恋愛と関係",
+  tempNames: ["凍結", "隠す", "選ぶ", "溢れる"],
+  distNames: ["閉じる", "守る", "測る", "明け渡す"],
+  field: { top: "溢れる", bottom: "隠す", left: "閉じる", right: "明け渡す" },
 
-  var TEMP_NAMES = ["凍結", "隠す", "選ぶ", "溢れる"];   // 温度：低→高
-  var DIST_NAMES = ["閉じる", "守る", "測る", "明け渡す"]; // 距離：低→高
-
-  var Q = [
+  Q: [
     { hook:"「こんなに良くしてくれるのに、なんで好きになれないんだろう」",
       q:"新しい人と近づくとき、自分に一番近いのはどれ？",
       o:[
@@ -77,268 +72,77 @@
         {k:"C", t:"しんどくても、心配をかけたくなくて平気なふりをする", temp:2, dist:2},
         {k:"D", t:"しんどいことに、自分でも気づかないまま動き続けている", temp:1, dist:1}
       ]}
-  ];
+  ],
 
-  var TYPES = {
+  TYPES: {
     "HH": { name:"溶ける人", tag:"感情も距離も差し出す。愛は深いが、境界が消える。",
       anchors:[1,2,5,6],
       punch:"バラバラに見えるが、全部おなじことをしている。感じたことを、そのまま、まるごと相手に渡している。温度も距離も、手元に何ひとつ残していない。",
       ansQ:"なぜ、いつも相手でいっぱいになってしまうのか。",
-      ans:[
-        "温度が高く、距離も明け渡している。感じた分だけ相手に流し込み、いつのまにか相手の基準で自分を決めている。だから、好きになるほど、自分の輪郭が薄くなっていく。",
-        "愛が足りないのではない。むしろ、注ぎ方に蓋がないだけだ。境界は、冷たさではない。深く愛しつづけるために、いちばん要る器だ。"
-      ],
+      ans:["温度が高く、距離も明け渡している。感じた分だけ相手に流し込み、いつのまにか相手の基準で自分を決めている。だから、好きになるほど、自分の輪郭が薄くなっていく。","愛が足りないのではない。むしろ、注ぎ方に蓋がないだけだ。境界は、冷たさではない。深く愛しつづけるために、いちばん要る器だ。"],
       bridge:"溶ける人に要るのは、温度を下げることではない。要るのは、距離の置き方。ただ、距離から整えるのか、温度の出口を先につくるのか——順番を間違えると、たいてい元に戻る。" },
     "HL": { name:"秘める人", tag:"感情はある。ただ、それを渡す相手がいない。誰にも届かないまま、内にこもる。",
       anchors:[2,3,5,6],
       punch:"バラバラに見えるが、全部おなじことをしている。内側の熱は高い。なのに、それを渡せる相手が、まだいない。温度は溢れそうで、距離は閉じている。",
       ansQ:"なぜ、こんなに想っているのに、伝わらないのか。",
-      ans:[
-        "想いは、ちゃんとある。ただ、それを渡せる相手を、まだ一人も選べていない。感情は行き先を持たないまま、内にこもりつづける。",
-        "想いが薄いのではない。むしろ濃い。ただ、それが、まだ誰にも届いていないだけだ。"
-      ],
+      ans:["想いは、ちゃんとある。ただ、それを渡せる相手を、まだ一人も選べていない。感情は行き先を持たないまま、内にこもりつづける。","想いが薄いのではない。むしろ濃い。ただ、それが、まだ誰にも届いていないだけだ。"],
       bridge:"秘める人に要るのは、熱を上げることではない。すでに、充分に熱い。要るのは、その熱に、渡す先をつくること。ただ、どこから開けるかには、順番がある。" },
     "LH": { name:"尽くす人", tag:"相手は入れるが、自分の感情は出さない。役割で愛する。",
       anchors:[0,1,3,5],
       punch:"バラバラに見えるが、全部おなじことをしている。相手は入れる。でも、自分の感情は出さない。距離は明け渡し、温度は隠す。",
       ansQ:"なぜ、こんなに良くしてくれる人を、好きになれないのか。",
-      ans:[
-        "距離を明け渡すのが、早すぎる。感情が追いつく前に、相手がもう中に入ってきている。だから、好きになる前に「近い」が成立してしまう。",
-        "好きになれないのではない。好きになる時間が、なかっただけだ。"
-      ],
+      ans:["距離を明け渡すのが、早すぎる。感情が追いつく前に、相手がもう中に入ってきている。だから、好きになる前に「近い」が成立してしまう。","好きになれないのではない。好きになる時間が、なかっただけだ。"],
       bridge:"尽くす人に要るのは、もっと尽くすことではない。温度から上げようとすると、役割が増えるだけで、たいてい元に戻る。整える順番には、向きがある。" },
     "LL": { name:"守る人", tag:"揺れない。ただし、届かない。",
       anchors:[0,2,3,5],
       punch:"バラバラに見えるが、全部おなじことをしている。揺れないように、感じすぎないように、入れすぎないように。温度は隠し、距離は閉じている。守りは、ほとんど完璧だ。",
       ansQ:"なぜ、誰かを好きになっても、どこか遠いのか。",
-      ans:[
-        "揺れないことで、ずっと自分を守ってきた。温度を出さず、距離も開かない。それは弱さではなく、身につけた強さだ。",
-        "ただ、その同じ壁が、届くはずの相手も外側に留めている。冷たいのではない。安全の内側から、まだ手を伸ばしていないだけだ。"
-      ],
+      ans:["揺れないことで、ずっと自分を守ってきた。温度を出さず、距離も開かない。それは弱さではなく、身につけた強さだ。","ただ、その同じ壁が、届くはずの相手も外側に留めている。冷たいのではない。安全の内側から、まだ手を伸ばしていないだけだ。"],
       bridge:"守る人に要るのは、いきなり心を開くことではない。それは怖いし、続かない。要るのは、どちらを先にゆるめるか——温度か、距離か。順番を間違えると、たいてい元に戻る。" }
-  };
+  },
 
-  /* ブロック③：入口の日ごとに、その日の問いへ直接答える（day index × type） */
-  var DAY_ANSWER = {
-    0:{ // 07-14 好条件
+  DAY_ANSWER: {
+    0:{
       HH:{q:"なぜ、良くしてくれる人を、好きになれないのか。",ans:["あなたは、温度も距離も、同時に差し出している。良くされると、感情も距離もいっぺんに相手へ流れ込む。好きかどうかを確かめる「自分の側」が、もう残っていない。","好きになれないんじゃない。好きかを確かめる自分の分を、先に渡しきっているだけだ。"]},
       HL:{q:"なぜ、良くしてくれる人を、好きになれないのか。",ans:["あなたの中には、好きになれる熱がある。ただ、それを渡す相手を、まだ一人も選べていない。良い条件で近づく人ほど、渡す手前で扉を閉める。感情は、行き先を持たないまま内にとどまる。","好きになれないんじゃない。その気持ちが、まだ誰にも届いていないだけだ。"]},
       LH:{q:"なぜ、良くしてくれる人を、好きになれないのか。",ans:["あなたは、相手を先に中へ入れる。良くされたら応え、条件に合わせて動く。渡しているのは気づかいや役割で、自分の感情そのものではない。相手はいるのに、あなたがそこにいない。","好きになれないんじゃない。その関係に、あなた自身がまだいないだけだ。"]},
       LL:{q:"なぜ、良くしてくれる人を、好きになれないのか。",ans:["あなたは、良くされるほど身構える。温度も距離も、閉じたまま動かさない。好意が本物か確かめるうちに、動かす前に時が過ぎる。","好きになれないんじゃない。その扉を、閉じたまま動かしていないだけだ。"]}
     },
-    1:{ // 07-15 言葉と行動
+    1:{
       HH:{q:"なぜ、言葉と行動がズレる人といると、こんなに疲れるのか。",ans:["あなたは、相手の言葉に温度も距離も明け渡す。「今度こそ」を聞くたび、まるごと信じて、まるごと差し出す。ズレるたび、渡した分だけ、自分がごっそり削れる。","疲れているんじゃない。毎回、まるごと渡しなおしているだけだ。"]},
       HL:{q:"なぜ、言葉と行動がズレる人といると、こんなに疲れるのか。",ans:["あなたには、伝えたい思いがある。なのに、それを渡せる相手だと、まだ確信できない。「今度こそ」に揺れる気持ちを、口に出さず内に置く。誰とも分けられないまま、思いだけが濃くなる。","疲れているんじゃない。その思いが、まだ誰にも届いていないだけだ。"]},
       LH:{q:"なぜ、言葉と行動がズレる人といると、こんなに疲れるのか。",ans:["あなたは、相手を許し、合わせ、関係を続ける。ズレを感じても、自分の失望は渡さない。相手のために動く役割はあるのに、そこにあなたの本音がない。","疲れているんじゃない。その関係に、あなた自身がいないだけだ。"]},
       LL:{q:"なぜ、言葉と行動がズレる人といると、こんなに疲れるのか。",ans:["あなたは、言葉より行動を静かに数えている。温度も距離も出さないまま、記録だけが増えていく。責めもしないし、離れもしない。その宙づりが、いちばん重い。","疲れているんじゃない。気持ちを、閉じたまま動かしていないだけだ。"]}
     },
-    2:{ // 07-16 動揺
+    2:{
       HH:{q:"なぜ、動揺すると、あんなに後を引くのか。",ans:["あなたは、揺れた感情をそのまま、まるごと外に出す。距離も同時に開くから、相手の反応まで一緒に流れ込んでくる。自分の揺れと相手の揺れが、混ざって止まらなくなる。","引きずっているんじゃない。自分の揺れも相手の揺れも、まとめて抱え込んでいるだけだ。"]},
       HL:{q:"なぜ、動揺すると、あんなに後を引くのか。",ans:["あなたの動揺は、大きい。ただ、それを見せられる相手がいない。揺れた感情は、渡す先を持たないまま内にこもる。誰とも分けられないから、ひとりで長く残る。","引きずっているんじゃない。その揺れが、まだ誰にも届いていないだけだ。"]},
       LH:{q:"なぜ、動揺すると、あんなに後を引くのか。",ans:["あなたは、揺れても相手には合わせる。動揺を隠し、関係は保つ。相手の前にはちゃんといるのに、渡しているのはその場をおさめる役割で、あなたの感情ではない。","引きずっているんじゃない。その場に、あなた自身がいなかっただけだ。"]},
       LL:{q:"なぜ、動揺すると、あんなに後を引くのか。",ans:["あなたは、揺れを誰にも見せない。平気なふりで、温度も距離も閉じたまま押し通す。受けた打撃は「なかったこと」にされ、消えずに内側に残る。","引きずっているんじゃない。受けたものを、閉じたまま動かしていないだけだ。"]}
     },
-    3:{ // 07-17 愛の受け取り方
+    3:{
       HH:{q:"なぜ、大切にされると「ごめんね」が先に出るのか。",ans:["あなたは、大切にされると温度も距離もいっぺんに開く。受け取った愛が大きすぎて、自分の器からあふれる。あふれた戸惑いが、「ありがとう」より先に「ごめんね」になる。","受け取るのが下手なんじゃない。受け取る器より、注がれる量が多いだけだ。"]},
       HL:{q:"なぜ、大切にされると「ごめんね」が先に出るのか。",ans:["あなたには、応えたい気持ちがある。なのに、それを渡す扉を閉めている。返したい思いが行き先を持てず、「ごめんね」という遠慮に変わる。","受け取るのが下手なんじゃない。返したい気持ちが、まだ誰にも届いていないだけだ。"]},
       LH:{q:"なぜ、大切にされると「ごめんね」が先に出るのか。",ans:["あなたは、相手をちゃんと中に入れている。でも、渡しているのは感情ではなく「借り」の意識。大切にされた分を、気持ちで返す代わりに、役割や埋め合わせで処理してしまう。","受け取るのが下手なんじゃない。受け取る側に、あなた自身がいないだけだ。"]},
       LL:{q:"なぜ、大切にされると「ごめんね」が先に出るのか。",ans:["あなたは、大切にされるほど身構える。温度も距離も閉じているから、好意が入ってくること自体が落ち着かない。その居心地の悪さが、「ごめんね」で距離を戻そうとする。","受け取るのが下手なんじゃない。受け取る手を、閉じたまま動かしていないだけだ。"]}
     },
-    4:{ // 07-18 又聞き
+    4:{
       HH:{q:"なぜ、又聞きの言葉が、こんなに刺さるのか。",ans:["あなたは、聞いた言葉に温度も距離も明け渡す。誰かの評価を、まるごと自分の真実として取り込む。他人の口から出た一言が、あなたの内側と一体になる。","気にしすぎなんじゃない。他人の言葉を、自分の分としてまるごと引き受けているだけだ。"]},
       HL:{q:"なぜ、又聞きの言葉が、こんなに刺さるのか。",ans:["あなたには、刺さった痛みがある。ただ、それを渡せる相手がいない。誰にも言えないまま、傷は内側でひとり大きくなる。","気にしすぎなんじゃない。その痛みが、まだ誰にも届いていないだけだ。"]},
       LH:{q:"なぜ、又聞きの言葉が、こんなに刺さるのか。",ans:["あなたは、周りに合わせて動きつづける。刺さっても、気をつかう役割は果たすのに、自分の痛みはそこに出さない。関係の中にいるのに、あなたの本音がいない。","気にしすぎなんじゃない。その気づかいの中に、あなた自身がいないだけだ。"]},
       LL:{q:"なぜ、又聞きの言葉が、こんなに刺さるのか。",ans:["あなたは、揺れても顔に出さない。温度も距離も閉じて、平気なふりで通り過ぎようとする。出さなかった動揺は、消えずに内側に残りつづける。","気にしすぎなんじゃない。その痛みを、閉じたまま動かしていないだけだ。"]}
     },
-    5:{ // 07-19 指摘の仕方
+    5:{
       HH:{q:"なぜ、行動を正したいだけなのに、人格の話になってしまうのか。",ans:["あなたは、感情も距離もまるごと乗せて伝える。溜まった熱がそのまま言葉に流れ込み、「この行動」だけを切り出せない。気づけば、相手の全部を巻き込んでいる。","責めたいんじゃない。感情も指摘も、ひとまとめにして渡しているだけだ。"]},
       HL:{q:"なぜ、行動を正したいだけなのに、人格の話になってしまうのか。",ans:["あなたには、言いたいことがある。なのに、渡せる相手だと確信できず、言わない時間が長くなる。溜めるほど、指摘の射程は広がっていく。ようやく口を開いたときには、話はもう「その行動」ではなく「あなたという人」になっている。","責めたいんじゃない。本当に言いたかったことは、まだ誰にも届いていないだけだ。"]},
       LH:{q:"なぜ、行動を正したいだけなのに、人格の話になってしまうのか。",ans:["あなたは、相手を立て、我慢を重ねて関係を保つ。合わせる役割は果たすのに、自分の感情は渡さない。溜まった分が、あなた不在のまま「結局そういう人」と噴き出す。","責めたいんじゃない。その我慢の中に、あなた自身がいなかっただけだ。"]},
       LL:{q:"なぜ、行動を正したいだけなのに、人格の話になってしまうのか。",ans:["あなたは、指摘を正しく言える。でも、温度を添えない。事実だけを渡すと、受け手には「あなたを否定した」と届く。正しさだけが、人格の話に見えてしまう。","責めたいんじゃない。その言葉に、心を閉じたまま動かしていないだけだ。"]}
     },
-    6:{ // 07-20 こじれた関係
+    6:{
       HH:{q:"なぜ、こじれた関係を、うまく戻せないのか。",ans:["あなたは、戻すときも温度も距離もいっぺんに差し出す。急いでまるごと近づき、相手の反応にまた飲まれる。整う前に、また同じところで、自分を残せなくなる。","戻せないんじゃない。整う前に、また全部を一度に渡しているだけだ。"]},
       HL:{q:"なぜ、こじれた関係を、うまく戻せないのか。",ans:["あなたには、戻したい気持ちがある。なのに、それを見せていい相手だと、まだ確信が持てない。戻りたさは行き先を失い、内側で不安に変わる。","戻せないんじゃない。戻りたい気持ちが、まだ誰にも届いていないだけだ。"]},
       LH:{q:"なぜ、こじれた関係を、うまく戻せないのか。",ans:["あなたは、気まずさを終わらせたくて先に折れる。相手は入れるのに、自分の本音は渡さない。「もう大丈夫」と役割で距離だけ戻し、あなたの感情はそこに置いていく。","戻せないんじゃない。戻したその関係に、あなた自身がいないだけだ。"]},
       LL:{q:"なぜ、こじれた関係を、うまく戻せないのか。",ans:["あなたは、一度揺れた場所を慎重に閉じる。温度も距離も出さず、様子を見たまま動かさない。守りが固いほど、戻れるタイミングも外側に置き去りになる。","戻せないんじゃない。その一歩を、閉じたまま動かしていないだけだ。"]}
     }
-  };
-
-  /* 出題順：start を先頭にして、残りの投稿分 → Q8（弱っている）は常に最後 */
-  var order;
-  if (typeof CFG.start === "number" && CFG.start >= 0 && CFG.start <= 6) {
-    order = [CFG.start];
-    for (var i = 0; i < 7; i++) { if (i !== CFG.start) order.push(i); }
-    order.push(7);
-  } else {
-    order = [0, 1, 2, 3, 4, 5, 6, 7];
   }
-
-  var idx = 0, answers = [], app = document.getElementById("app");
-  if (!app) return;
-
-  function clampIdx(a) { return a < 1 ? 1 : (a > 4 ? 4 : a); }
-  function nameOf(names, score) { return names[clampIdx(Math.round(score / 8)) - 1]; }
-
-  function field(px, py, lit) {
-    var q = "";
-    if (lit) {
-      var qx = px > 0 ? 156 : 12, qy = py > 0 ? 12 : 116;
-      q = '<rect class="quad lit" x="' + qx + '" y="' + qy + '" width="132" height="104" rx="4"/>';
-    }
-    var cx = 150 + px * 62, cy = 116 - py * 48;
-    return '<svg class="field" viewBox="0 0 300 236" role="img" aria-label="温度と距離の現在地">'
-      + q
-      + '<line class="grid-line" x1="150" y1="14" x2="150" y2="218"/>'
-      + '<line class="grid-line" x1="12" y1="116" x2="288" y2="116"/>'
-      + '<text x="150" y="9" text-anchor="middle" dominant-baseline="hanging">HEAT</text>'
-      + '<text class="jp" x="150" y="24" text-anchor="middle" dominant-baseline="hanging">溢れる</text>'
-      + '<text x="150" y="230" text-anchor="middle">FREEZE</text>'
-      + '<text class="jp" x="150" y="216" text-anchor="middle">隠す</text>'
-      + '<text x="8" y="112">CLOSE</text>'
-      + '<text class="jp" x="8" y="126">閉じる</text>'
-      + '<text x="292" y="112" text-anchor="end">OPEN</text>'
-      + '<text class="jp" x="292" y="126" text-anchor="end">明け渡す</text>'
-      + '<circle class="halo" cx="' + cx + '" cy="' + cy + '" r="15"/>'
-      + '<circle class="dot" cx="' + cx + '" cy="' + cy + '" r="4.5"/>'
-      + '</svg>';
-  }
-
-  function partialPos() {
-    var n = 0, ts = 0, ds = 0;
-    for (var i = 0; i < answers.length; i++) { if (answers[i]) { ts += answers[i].temp; ds += answers[i].dist; n++; } }
-    if (n === 0) return { x: 0, y: 0 };
-    var ty = (ts / n - 2.5) / 1.5, tx = (ds / n - 2.5) / 1.5;
-    return { x: Math.max(-1, Math.min(1, tx)), y: Math.max(-1, Math.min(1, ty)) };
-  }
-
-  function home() {
-    var h = CFG.home || {};
-    var eyebrow = h.eyebrow || "The Art of Temperature &amp; Distance";
-    var kicker = h.kicker ? '<p class="kicker">' + h.kicker + '</p>' : '';
-    var title = h.title || "恋愛と関係の<br>温度と距離";
-    var lede = h.lede || "関係がうまくいかないとき、原因は愛情の量でも相性でもない。感情の温度と、相手との距離。その2つの立ち位置にある。8つの問いで、いまどこに立っているかが出る。所要 約2分。";
-    var startSmall = h.startSmall || "1問ずつ・全8問・単一選択";
-    app.innerHTML = '<div class="fade">'
-      + '<button class="hub-back" id="pageBack" type="button">&larr; 戻る</button>'
-      + '<p class="eyebrow">' + eyebrow + '</p>'
-      + kicker
-      + '<h1>' + title + '</h1>'
-      + '<p class="lede">' + lede + '</p>'
-      + '<div class="rule"></div>'
-      + '<button class="start" id="go">はじめる<small>' + startSmall + '</small></button>'
-      + '<p class="sig">ネイル・飲食・BAR運営20年。延べ5万人超との対話から。<br><span>Coco Methodology</span></p>'
-      + '</div>';
-    document.getElementById("go").onclick = function () { idx = 0; answers = []; question(); };
-    var pb = document.getElementById("pageBack");
-    if (pb) pb.onclick = function () { if (history.length > 1) history.back(); else location.assign("/kankei"); };
-  }
-
-  function question() {
-    var oi = order[idx];
-    var item = Q[oi];
-    var ticks = "";
-    for (var i = 0; i < 8; i++) { ticks += '<div class="tick' + (i < idx ? " on" : "") + '"></div>'; }
-    var pos = partialPos();
-    var cards = item.o.map(function (o) {
-      return '<button class="card" data-k="' + o.k + '"><span class="k">' + o.k + '</span>' + o.t + '</button>';
-    }).join("");
-    app.innerHTML = '<div class="fade">'
-      + '<div class="top"><span class="qnum">Q <b>' + (idx + 1) + '</b> / 8</span><div class="ticks">' + ticks + '</div></div>'
-      + field(pos.x, pos.y, false)
-      + (item.hook ? '<p class="hook">' + item.hook + '</p>' : '')
-      + '<p class="qtext">' + item.q + '</p>'
-      + cards
-      + '<button class="ghost" id="back">ひとつ戻る</button>'
-      + '</div>';
-    var btns = app.querySelectorAll("[data-k]");
-    for (var j = 0; j < btns.length; j++) {
-      (function (b) {
-        b.onclick = function () {
-          var key = b.getAttribute("data-k");
-          for (var m = 0; m < item.o.length; m++) { if (item.o[m].k === key) { answers[oi] = item.o[m]; } }
-          idx++;
-          if (idx < 8) { question(); } else { done(); }
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        };
-      })(btns[j]);
-    }
-    var bk = document.getElementById("back");
-    if (bk) bk.onclick = function () {
-      if (idx > 0) { idx--; answers[order[idx]] = null; question(); }
-      else { home(); }
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-  }
-
-  function done() {
-    var ticks = "";
-    for (var i = 0; i < 8; i++) { ticks += '<div class="tick on"></div>'; }
-    app.innerHTML = '<div class="fade">'
-      + '<div class="top"><span class="qnum">8 <b>/</b> 8　完了</span><div class="ticks">' + ticks + '</div></div>'
-      + '<div class="done-wrap">'
-      + '<p class="done-mark">ALL DONE ── 8問、おわり</p>'
-      + '<div class="done-check" aria-hidden="true"></div>'
-      + '<p class="done-h">ぜんぶ、答えました。</p>'
-      + '<p class="done-sub">いま、どこに立っているか。出ました。</p>'
-      + '<button class="start" id="see">結果を見る<small>あなたの型と、その理由</small></button>'
-      + '</div></div>';
-    document.getElementById("see").onclick = function () { result(); window.scrollTo({ top: 0, behavior: "smooth" }); };
-  }
-
-  function result() {
-    var ts = 0, ds = 0;
-    for (var i = 0; i < answers.length; i++) { if (answers[i]) { ts += answers[i].temp; ds += answers[i].dist; } }
-    var tempHigh = ts >= 21, distHigh = ds >= 21;
-    var key = (tempHigh ? "H" : "L") + (distHigh ? "H" : "L");
-    var T = TYPES[key];
-    var tName = nameOf(TEMP_NAMES, ts), dName = nameOf(DIST_NAMES, ds);
-    var px = Math.max(-1, Math.min(1, (ds / 8 - 2.5) / 1.5));
-    var py = Math.max(-1, Math.min(1, (ts / 8 - 2.5) / 1.5));
-
-    var lines = T.anchors.map(function (qi) {
-      return '<li><span class="lq">Q' + (qi + 1) + '</span>' + answers[qi].t + '</li>';
-    }).join("");
-    /* ③：入口の日があれば、その日の問いへ直接答える */
-    var b3 = (typeof CFG.start === "number" && DAY_ANSWER[CFG.start] && DAY_ANSWER[CFG.start][key])
-      ? DAY_ANSWER[CFG.start][key] : { q: T.ansQ, ans: T.ans };
-    var ans3 = b3.ans.map(function (p, i) {
-      return '<p' + (i === b3.ans.length - 1 ? ' class="strong"' : '') + '>' + p + '</p>';
-    }).join("");
-
-    app.innerHTML = '<div class="fade">'
-      + '<div class="result-banner"><span class="rb-line"></span><span class="rb-label">診断結果</span><span class="rb-line"></span></div>'
-      + '<p class="r-code">YOUR TYPE ── 恋愛と関係</p>'
-      + '<h2 class="r-name">' + T.name + '</h2>'
-      + '<p class="r-tag">' + T.tag + '</p>'
-      + '<div class="axes">'
-        + '<div class="axis"><p class="a-label">TEMP ／ 温度</p><p class="a-name">' + tName + '</p>'
-          + '<p class="a-score">' + ts + ' ／ 32</p><div class="a-bar"><div class="a-fill" style="width:' + Math.round((ts - 8) / 24 * 100) + '%"></div></div></div>'
-        + '<div class="axis"><p class="a-label">DIST ／ 距離</p><p class="a-name">' + dName + '</p>'
-          + '<p class="a-score">' + ds + ' ／ 32</p><div class="a-bar"><div class="a-fill" style="width:' + Math.round((ds - 8) / 24 * 100) + '%"></div></div></div>'
-      + '</div>'
-      + field(px, py, true)
-      + '<div class="block">'
-        + '<div class="b-label"><span class="b-num">2</span><span class="b-title">ひとつの線でつなぐ</span></div>'
-        + '<p>選んだのは、別々の場面のはずだった。</p>'
-        + '<ul class="lines">' + lines + '</ul>'
-        + '<p class="strong">' + T.punch + '</p>'
-      + '</div>'
-      + '<div class="block">'
-        + '<div class="b-label"><span class="b-num">3</span><span class="b-title">問いに、答えを返す</span></div>'
-        + '<div class="answer"><p class="a-q">' + b3.q + '</p>' + ans3 + '</div>'
-      + '</div>'
-      + '<div class="block">'
-        + '<div class="b-label"><span class="b-num">4</span><span class="b-title">ここから</span></div>'
-        + '<p>ただ、これは「なぜそうなるか」の説明であって、「どうするか」ではない。</p>'
-        + '<p>' + T.bridge + '</p>'
-        + '<a class="cta" href="' + MEMBERSHIP + '" target="_blank" rel="noopener">チームCoco ―― 恋愛と関係<small>整える順番を、ひとつずつ</small></a>'
-      + '</div>'
-      + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="/kankei">診断一覧へ</a></div>'
-      + '<p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>'
-      + '</div>';
-    document.getElementById("again").onclick = function () { idx = 0; answers = []; home(); window.scrollTo({ top: 0, behavior: "smooth" }); };
-  }
-
-  home();
-})();
+};

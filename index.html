@@ -2,21 +2,81 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>関係の温度と距離を整える技術</title>
-<meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="0; url=/kankei">
-<link rel="canonical" href="/kankei">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>関係の温度と距離を整える技術 ｜ 診断</title>
+<meta name="description" content="関係がうまくいかないとき、原因は温度と距離の立ち位置にある。恋愛と関係／組織と仕事、8問で確かめる。">
+<meta property="og:title" content="関係の温度と距離を整える技術 ｜ 診断">
+<meta property="og:description" content="温度と距離。その2つの立ち位置を、8問で確かめる。">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#fbf8f1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
-  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-    background:#fbf8f1;color:#8a7f70;
-    font-family:"Zen Kaku Gothic New",system-ui,sans-serif;font-size:14px;letter-spacing:.04em}
-  a{color:#a8763c;text-decoration:none}
-  a:hover{text-decoration:underline}
+  :root{
+    --paper:#fbf8f1; --card:#f6f0e6; --card-2:#efe7d8; --ink:#2b2620;
+    --muted:#8a7f70; --faint:#b6a68f; --amber:#a8763c; --slate:#7e97a8; --line:#e4dccf; --line-2:#d8cdb8;
+    --serif:"Shippori Mincho B1", serif;
+    --sans:"Zen Kaku Gothic New", system-ui, sans-serif;
+    --latin:"Cormorant Garamond", serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.85;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    display:flex;justify-content:center;align-items:center;padding:clamp(28px,7vw,60px) 20px calc(60px + env(safe-area-inset-bottom))}
+  #app{width:100%;max-width:520px}
+  .eyebrow{font-family:var(--latin);font-style:italic;font-size:16px;letter-spacing:.06em;color:var(--amber)}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(26px,6.6vw,33px);line-height:1.5;letter-spacing:.03em;margin:14px 0 16px;text-wrap:balance}
+  .lede{color:var(--muted);font-size:15px;letter-spacing:.02em}
+  .rule{height:1px;background:var(--line-2);margin:30px 0 24px}
+  .choose{font-family:var(--latin);font-size:13px;letter-spacing:.16em;color:var(--faint);text-transform:uppercase;margin-bottom:14px}
+  .list{display:flex;flex-direction:column;gap:14px}
+  .item{display:block;text-decoration:none;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:10px;padding:22px 22px;position:relative;overflow:hidden;
+    transition:border-color .25s ease, background .25s ease, transform .18s ease, box-shadow .25s ease;
+    -webkit-tap-highlight-color:transparent}
+  .item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+  .item.love{--accent:var(--slate)} .item.work{--accent:var(--amber)}
+  .item:hover,.item:focus-visible{border-color:var(--accent);background:#f7f1e7;transform:translateY(-1px);
+    box-shadow:0 8px 22px -14px rgba(120,86,40,.5);outline:none}
+  .item .k{font-family:var(--latin);font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+  .item .t{font-family:var(--serif);font-size:clamp(20px,5vw,24px);font-weight:600;letter-spacing:.03em;margin:6px 0 6px}
+  .item .d{font-size:13.5px;color:var(--muted);letter-spacing:.02em}
+  .item .go{display:flex;justify-content:flex-end;margin-top:12px}
+  .item .arw{font-family:var(--latin);font-size:16px;color:var(--accent);transition:transform .2s ease}
+  .item:hover .arw{transform:translateX(4px)}
+  .sig{margin-top:36px;font-size:12.5px;line-height:2;letter-spacing:.05em;color:var(--faint);text-align:center}
+  .sig span{font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.12em}
+  .fade{animation:fade .6s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-  <p>診断へ移動します…　<a href="/kankei">開かない場合はこちら</a></p>
-  <script>location.replace("/kankei");</script>
+<div id="app">
+  <div class="fade">
+    <p class="eyebrow">The Art of Temperature &amp; Distance</p>
+    <h1>関係の温度と<br>距離を整える技術</h1>
+    <p class="lede">うまくいかない原因は、熱意でも相性でもない。感情の温度と、相手との距離。その2つの立ち位置にある。温度も距離も、職場にも恋愛にも、両方ある。</p>
+    <div class="rule"></div>
+    <p class="choose">どちらの温度と距離を、確かめますか</p>
+    <nav class="list">
+      <a class="item love" href="/kankei">
+        <p class="k">Relationship</p>
+        <p class="t">恋愛と関係</p>
+        <p class="d">好きになれない、伝わらない、こじれる。近づけない、離れられない。</p>
+        <div class="go"><span class="arw">診断へ →</span></div>
+      </a>
+      <a class="item work" href="/soshiki">
+        <p class="k">Organization</p>
+        <p class="t">組織と仕事</p>
+        <p class="d">犯人捜し、進まない会議、揺さぶり、育たない部下、情報の非対称。</p>
+        <div class="go"><span class="arw">診断へ →</span></div>
+      </a>
+    </nav>
+    <p class="sig">ネイル・飲食・BAR運営20年。延べ5万人超との対話から。<br><span>Coco Methodology</span></p>
+  </div>
+</div>
 </body>
 </html>

@@ -1,7 +1,4 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
-  "redirects": [
-    { "source": "/", "destination": "/kankei", "permanent": false }
-  ]
+  "trailingSlash": false
 }
