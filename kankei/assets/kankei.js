@@ -249,7 +249,7 @@
       + (item.hook ? '<p class="hook">' + item.hook + '</p>' : '')
       + '<p class="qtext">' + item.q + '</p>'
       + cards
-      + (idx > 0 ? '<button class="ghost" id="back">ひとつ戻る</button>' : '')
+      + '<button class="ghost" id="back">ひとつ戻る</button>'
       + '</div>';
     var btns = app.querySelectorAll("[data-k]");
     for (var j = 0; j < btns.length; j++) {
@@ -264,7 +264,11 @@
       })(btns[j]);
     }
     var bk = document.getElementById("back");
-    if (bk) bk.onclick = function () { idx--; answers[order[idx]] = null; question(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+    if (bk) bk.onclick = function () {
+      if (idx > 0) { idx--; answers[order[idx]] = null; question(); }
+      else { home(); }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
   }
 
   function done() {
