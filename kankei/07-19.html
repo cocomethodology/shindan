@@ -3,71 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>指摘の仕方の深堀り診断 ｜ 関係の温度と距離を整える技術</title>
-<meta name="description" content="行動を注意すると、人格を否定した空気になる。8つの問いで、あなたがどっち側かが出る。">
-<meta property="og:title" content="行動を注意しただけなのに、なぜか人格の話に──8問で、どっち側か出る">
-<meta property="og:description" content="行動を正したいだけなのに、伝え方ひとつで「あなたを否定した」空気になる。">
+<title>指摘の仕方 ｜ 恋愛と関係の診断 ── 関係の温度と距離を整える技術</title>
+<meta name="description" content="行動を注意すると、人格を否定した空気になる。1問目はあの問いから。8問で、いまどこに立っているかが出る。">
+<meta property="og:title" content="行動を注意しただけなのに、なぜか人格の話に──8問で、いまどこに立っているか">
+<meta property="og:description" content="正したいだけなのに、なぜ人格の話になるのか。温度と距離にある。">
 <meta name="theme-color" content="#fbf8f1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/deepdive.css">
+<link rel="stylesheet" href="assets/kankei.css">
 </head>
 <body>
 <div id="app"></div>
 <script>
-window.DEEPDIVE = {
-  date:"2026-07-19", weekday:"日", theme:"指摘の仕方",
-  home:{
-    eyebrow:"The Art of Temperature & Distance",
-    title:"「もうこれで最後にして」<br>──また同じ約束を交わした。",
-    lede:"行動を正したいだけなのに、伝え方ひとつで「あなたを否定した」空気になる。8つの問いで、あなたがどっち側かが出る。所要 約1分。"
-  },
-  axis:{ left:{name:"分ける", en:"SEPARATE"}, right:{name:"混ざる", en:"MERGE"} },
-  q:[
-    { t:"相手の行動を、注意するとき。",
-      a:{label:"つい「そういう人だよね」と、人格の話になる", side:"A"},
-      b:{label:"「この行動をやめてほしい」と、行動に絞れる", side:"B"} },
-    { t:"指摘したあと。",
-      a:{label:"相手を丸ごと否定した気がして、苦しくなる", side:"A"},
-      b:{label:"行動への線引きと、相手への好意を、両方渡せる", side:"B"} },
-    { t:"傷ついたことを伝えようとすると。",
-      a:{label:"相手を責める言い方に、なってしまう", side:"A"},
-      b:{label:"「私はこう感じた」に、留められる", side:"B"} },
-    { t:"何度も同じことが続くと。",
-      a:{label:"「結局こういう人」と、決めつけたくなる", side:"A"},
-      b:{label:"行動は行動、人は人、と切り分けられる", side:"B"} },
-    { t:"注意する前は、たいてい。",
-      a:{label:"我慢して、溜め込んでしまいがち", side:"A"},
-      b:{label:"小さいうちに、行動だけを伝えられる", side:"B"} },
-    { t:"指摘のあとに。",
-      a:{label:"フォローの一言を、忘れてしまう", side:"A"},
-      b:{label:"「ここは変わらず好き」と、添えられる", side:"B"} },
-    { t:"相手が防御に回ると。",
-      a:{label:"こちらもヒートアップしてしまう", side:"A"},
-      b:{label:"主語を「行動」に戻して、話を続けられる", side:"B"} },
-    { t:"本当に伝えたいのは。",
-      a:{label:"気づけば「あなたが悪い」に、なっている", side:"A"},
-      b:{label:"「この行動を変えてほしい」だと、見失わずにいられる", side:"B"} }
-  ],
-  results:{
-    A:{ name:"混ざる側", sub:"行動が、人格の話になる",
-      body:[
-        "行動を正したいのに、主語が「行動」から「あなた」にすり替わってしまう。伝えたい気持ちは、本物だ。",
-        "ただ、主語が人格に移った瞬間、相手は防御に回る。防御に回った相手には、どんなに正しい指摘も届かない。",
-        "行動を正すことと、人を否定することは、別の作業だ。指摘と好意は、同じ口から、同じ日に、両方渡していい。"
-      ],
-      bridge:"じゃあ、主語を「行動」に戻す仕組みを、どこに置くのか。分ける力を、温度と距離のどちらから育てるか——順番がある。" },
-    B:{ name:"分ける側", sub:"行動と人を、切り分ける",
-      body:[
-        "「この行動はやめてほしい。でも、あなたは大切」と、線引きと承認を同時に渡せる。いちばん届く伝え方だ。",
-        "行動への指摘と、存在への愛情。片方だけより、両方渡すほうが、ずっと相手の心に残る。",
-        "ただ、分けることに慣れていると、時に指摘が正論すぎて、温度が置き去りになることもある。"
-      ],
-      bridge:"じゃあ、正しさに温度を足すのは、どこからか。伝わる指摘の順番には、向きがある。" }
+window.KANKEI = {
+  start: 5,
+  home: {
+    eyebrow: "The Art of Temperature &amp; Distance",
+    kicker: "07-19（日） ── 指摘の仕方",
+    title: "「もうこれで最後にして」<br>──また同じ約束を交わした。",
+    lede: "行動を正したいだけなのに、伝え方ひとつで「あなたを否定した」空気になる。その分かれ目は、温度と距離で見える。1問目は、投稿で見たあの問いから。8問で、いまどこに立っているかが出る。所要 約2分。",
+    startSmall: "1問目は、投稿で見たあの問い"
   }
 };
 </script>
-<script src="assets/deepdive.js"></script>
+<script src="assets/kankei.js"></script>
 </body>
 </html>

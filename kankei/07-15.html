@@ -3,71 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>言葉と行動のズレの深堀り診断 ｜ 関係の温度と距離を整える技術</title>
-<meta name="description" content="「今度は絶対に変える」を、もう何回聞いた？ 8つの問いで、あなたがどっち側かが出る。">
-<meta property="og:title" content="「今度は絶対に変える」を、もう何回聞いた？──8問で、どっち側か出る">
-<meta property="og:description" content="言葉と行動がズレる人といると、なぜか疲れる。その理由は、あなたが何を信じているかにある。">
+<title>言葉と行動のズレ ｜ 恋愛と関係の診断 ── 関係の温度と距離を整える技術</title>
+<meta name="description" content="「今度は絶対に変える」を、もう何回聞いた？ 1問目はあの問いから。8問で、いまどこに立っているかが出る。">
+<meta property="og:title" content="「今度は絶対に変える」を、もう何回聞いた？──8問で、いまどこに立っているか">
+<meta property="og:description" content="言葉と行動のズレに、なぜ疲れるのか。温度と距離にある。">
 <meta name="theme-color" content="#fbf8f1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/deepdive.css">
+<link rel="stylesheet" href="assets/kankei.css">
 </head>
 <body>
 <div id="app"></div>
 <script>
-window.DEEPDIVE = {
-  date:"2026-07-15", weekday:"水", theme:"言葉と行動のズレ",
-  home:{
-    eyebrow:"The Art of Temperature & Distance",
-    title:"「今度は絶対に変える」を、<br>もう何回聞いた？",
-    lede:"言葉と行動がズレる人といると、なぜか疲れる。その理由は、あなたが「言葉」と「行動」の、どちらを信じているかにある。8つの問いで、あなたがどっち側かが出る。所要 約1分。"
-  },
-  axis:{ left:{name:"見極める", en:"WATCH"}, right:{name:"信じ続ける", en:"BELIEVE"} },
-  q:[
-    { t:"「今度こそ変える」と言われたとき。",
-      a:{label:"その言葉を、また信じたくなる", side:"A"},
-      b:{label:"言葉より、次の行動を待つ", side:"B"} },
-    { t:"相手の言い訳の中身が、毎回変わる。",
-      a:{label:"それでも、事情があるのかもと受け取る", side:"A"},
-      b:{label:"中身が変わること自体を、しるしとして見る", side:"B"} },
-    { t:"一度直ったのを見たあと。",
-      a:{label:"もう大丈夫だと、安心してしまう", side:"A"},
-      b:{label:"しばらくは、続くか様子を見る", side:"B"} },
-    { t:"「ごめん、もうしない」と謝られると。",
-      a:{label:"謝ってくれたら、水に流せる", side:"A"},
-      b:{label:"謝罪より、そのあと何をするかを見る", side:"B"} },
-    { t:"言葉はやさしいのに、行動が伴わない相手。",
-      a:{label:"やさしさのほうを、信じたい", side:"A"},
-      b:{label:"行動のほうを、事実として扱う", side:"B"} },
-    { t:"同じ約束が、また破られたとき。",
-      a:{label:"今回は特別な事情かも、と思う", side:"A"},
-      b:{label:"何回目かを、そのまま数えている", side:"B"} },
-    { t:"「変わろうとしてる」姿を見せられると。",
-      a:{label:"その努力に、期待してしまう", side:"A"},
-      b:{label:"努力より、結果が出るまで保留する", side:"B"} },
-    { t:"信じることと、期待すること。",
-      a:{label:"自分の中では、ほとんど同じだ", side:"A"},
-      b:{label:"分けている。信じても、期待はしすぎない", side:"B"} }
-  ],
-  results:{
-    A:{ name:"信じ続ける側", sub:"言葉のほうを、受け取る",
-      body:[
-        "相手の言葉を、何度でも受け取れる。それは信じる力であり、弱さではなく優しさだ。",
-        "ただ、「今度こそ」を無条件に受け取り続けると、同じことが起きるたび、失望だけが積み重なっていく。",
-        "信じることと、期待しつづけることは、少し違う。言葉は一度でいい。二度目からは、行動だけを材料にできる。"
-      ],
-      bridge:"じゃあ、何回目で、信じる材料を「言葉」から「行動」に切り替えるのか。その切り替えには、順番がある。" },
-    B:{ name:"見極める側", sub:"行動のほうを、見る",
-      body:[
-        "言葉ではなく、行動を事実として扱える。感情に流されず、回数を数えていられる。",
-        "それは冷たさではない。二度目からは行動だけを見る、という静かな線引きだ。",
-        "ただ、見極めが早すぎると、まだ変われたはずの関係まで、先に閉じてしまうこともある。"
-      ],
-      bridge:"じゃあ、その線引きは、どこで引くのが早すぎず、遅すぎないのか。見極めの順番には、向きがある。" }
+window.KANKEI = {
+  start: 1,
+  home: {
+    eyebrow: "The Art of Temperature &amp; Distance",
+    kicker: "07-15（水） ── 言葉と行動のズレ",
+    title: "「今度は絶対に変える」を、<br>もう何回聞いた？",
+    lede: "言葉と行動がズレる人といると、なぜか疲れる。その理由は、温度と距離——感情の出し方と、相手の入れ方にある。1問目は、投稿で見たあの問いから。8問で、いまどこに立っているかが出る。所要 約2分。",
+    startSmall: "1問目は、投稿で見たあの問い"
   }
 };
 </script>
-<script src="assets/deepdive.js"></script>
+<script src="assets/kankei.js"></script>
 </body>
 </html>

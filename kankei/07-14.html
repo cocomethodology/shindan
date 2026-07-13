@@ -3,71 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>好条件と好意の深堀り診断 ｜ 関係の温度と距離を整える技術</title>
-<meta name="description" content="「良くしてくれるのに、好きになれない」。8つの問いで、あなたがどっち側かが出る。">
-<meta property="og:title" content="「良くしてくれるのに、好きになれない」──8問で、どっち側か出る">
-<meta property="og:description" content="理由は、好意の大きさじゃない。距離の明け渡し方にある。">
+<title>好条件と好意 ｜ 恋愛と関係の診断 ── 関係の温度と距離を整える技術</title>
+<meta name="description" content="「良くしてくれるのに、好きになれない」。1問目はあの問いから。8問で、いまどこに立っているかが出る。">
+<meta property="og:title" content="「良くしてくれるのに、好きになれない」──8問で、いまどこに立っているか">
+<meta property="og:description" content="理由は、好意の大きさじゃない。温度と距離にある。">
 <meta name="theme-color" content="#fbf8f1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/deepdive.css">
+<link rel="stylesheet" href="assets/kankei.css">
 </head>
 <body>
 <div id="app"></div>
 <script>
-window.DEEPDIVE = {
-  date:"2026-07-14", weekday:"火", theme:"好条件と好意",
-  home:{
-    eyebrow:"The Art of Temperature & Distance",
-    title:"「良くしてくれるのに、<br>好きになれない」",
-    lede:"その理由は、好意の大きさじゃない。相手を内側に入れる——距離の明け渡し方にある。8つの問いで、あなたがどっち側かが出る。所要 約1分。"
-  },
-  axis:{ left:{name:"守る", en:"HOLD"}, right:{name:"明け渡す", en:"OPEN"} },
-  q:[
-    { t:"相手からの好意が、こちらの気持ちより先に大きくなっている。",
-      a:{label:"うれしくて、つい距離が近づく", side:"A"},
-      b:{label:"うれしいより先に、少し身構える", side:"B"} },
-    { t:"「なんでこんなに良くしてくれるんだろう」と感じたとき、まず。",
-      a:{label:"ありがたくて、応えたくなる", side:"A"},
-      b:{label:"理由を、確かめたくなる", side:"B"} },
-    { t:"条件のいい相手を前にすると。",
-      a:{label:"くれるものに、つい心が動く", side:"A"},
-      b:{label:"くれるものより、素でいられるかを見る", side:"B"} },
-    { t:"まだ好きかわからない段階で、相手が距離を詰めてきた。",
-      a:{label:"その流れに、乗ってしまう", side:"A"},
-      b:{label:"好きだと感じるまで、待つ", side:"B"} },
-    { t:"周りが「この人なら間違いない」と言う相手。",
-      a:{label:"その評価に、気持ちが引っぱられる", side:"A"},
-      b:{label:"評価より、自分の感覚を待つ", side:"B"} },
-    { t:"良くしてもらった分。",
-      a:{label:"返さなきゃ、と気持ちが動く", side:"A"},
-      b:{label:"もらうことと、好きは切り離せる", side:"B"} },
-    { t:"恋の始まりを思い返すと、たいてい。",
-      a:{label:"相手から来てくれて、応えるかたち", side:"A"},
-      b:{label:"自分の中で、じわっと育つかたち", side:"B"} },
-    { t:"「好きになろう」と、意識して思ったことがある。",
-      a:{label:"ある。条件が良ければ、なおさら", side:"A"},
-      b:{label:"ない。好きは、気づいたら始まっている", side:"B"} }
-  ],
-  results:{
-    A:{ name:"明け渡す側", sub:"先に、入れてしまう",
-      body:[
-        "良くしてくれる人を前にすると、距離を先に明け渡している。感情が追いつく前に、相手がもう内側にいる。",
-        "だから、好きになる前に「近い」が完成してしまう。好きになれないのではない。好きになる時間が、まだ来ていないだけだ。",
-        "明け渡す早さは、優しさでもある。ただ、早すぎると、自分の温度を確かめる前に、関係のかたちが決まってしまう。"
-      ],
-      bridge:"じゃあ、その「早さ」は、距離から整えるのか、それとも温度からか。順番を間違えると、たいてい元に戻る。" },
-    B:{ name:"守る側", sub:"先に、確かめる",
-      body:[
-        "良い条件を出されても、すぐには入れない。感情が本物になるまで、距離を保っていられる。",
-        "それは冷たさではなく、選ぶ強さだ。差し出されたものの大きさで、自分の気持ちを決めない。",
-        "ただ、守りが固いままだと、本当は届くはずの相手まで、外側に留めてしまうことがある。"
-      ],
-      bridge:"じゃあ、その守りを、どこから、どれだけゆるめるのか。ゆるめる順番には、向きがある。" }
+window.KANKEI = {
+  start: 0,
+  home: {
+    eyebrow: "The Art of Temperature &amp; Distance",
+    kicker: "07-14（火） ── 好条件と好意",
+    title: "「良くしてくれるのに、<br>好きになれない」",
+    lede: "その理由は、好意の大きさじゃない。感情の温度と、相手を入れる距離——その2つの立ち位置にある。1問目は、投稿で見たあの問いから。8問で、いまどこに立っているかが出る。所要 約2分。",
+    startSmall: "1問目は、投稿で見たあの問い"
   }
 };
 </script>
-<script src="assets/deepdive.js"></script>
+<script src="assets/kankei.js"></script>
 </body>
 </html>

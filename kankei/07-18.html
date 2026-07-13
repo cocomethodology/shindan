@@ -3,71 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>又聞きとの距離の深堀り診断 ｜ 関係の温度と距離を整える技術</title>
-<meta name="description" content="「〇〇さんが、あなたのことこう言ってたよ」。8つの問いで、あなたがどっち側かが出る。">
-<meta property="og:title" content="「〇〇さんがこう言ってたよ」──8問で、どっち側か出る">
-<meta property="og:description" content="本人からじゃない言葉ほど、なぜか深く刺さる。そのとき、どう動くか。">
+<title>又聞き ｜ 恋愛と関係の診断 ── 関係の温度と距離を整える技術</title>
+<meta name="description" content="「〇〇さんが、あなたのことこう言ってたよ」。1問目はあの問いから。8問で、いまどこに立っているかが出る。">
+<meta property="og:title" content="「〇〇さんがこう言ってたよ」──8問で、いまどこに立っているか">
+<meta property="og:description" content="本人じゃない言葉と、どう距離を取るか。温度と距離にある。">
 <meta name="theme-color" content="#fbf8f1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/deepdive.css">
+<link rel="stylesheet" href="assets/kankei.css">
 </head>
 <body>
 <div id="app"></div>
 <script>
-window.DEEPDIVE = {
-  date:"2026-07-18", weekday:"土", theme:"又聞き",
-  home:{
-    eyebrow:"The Art of Temperature & Distance",
-    title:"「〇〇さんが、あなたの<br>ことこう言ってたよ」",
-    lede:"本人からじゃない言葉ほど、なぜか深く刺さる。そのとき、どう動くか。8つの問いで、あなたがどっち側かが出る。所要 約1分。"
-  },
-  axis:{ left:{name:"置ける", en:"DETACH"}, right:{name:"巻き込まれる", en:"CAUGHT"} },
-  q:[
-    { t:"又聞きの言葉を、聞いた瞬間。",
-      a:{label:"頭から、離れなくなる", side:"A"},
-      b:{label:"動揺しても、いったん脇に置ける", side:"B"} },
-    { t:"気になって。",
-      a:{label:"周りの反応を、それとなく探ってしまう", side:"A"},
-      b:{label:"確かめず、時間に預ける", side:"B"} },
-    { t:"噂の出どころを。",
-      a:{label:"直接、確かめに行きたくなる", side:"A"},
-      b:{label:"出どころ探しには、深入りしない", side:"B"} },
-    { t:"「本人じゃない言葉」を。",
-      a:{label:"つい、本人の本心として受け取る", side:"A"},
-      b:{label:"発した人の言葉であって、自分の真実ではないと分けられる", side:"B"} },
-    { t:"もやもやが残ると。",
-      a:{label:"そのことばかり、考えてしまう", side:"A"},
-      b:{label:"考える時間を、区切れる", side:"B"} },
-    { t:"誰かの評価を耳にすると。",
-      a:{label:"自分の価値に、直結してしまう", side:"A"},
-      b:{label:"ひとつの声として、聞き流せる", side:"B"} },
-    { t:"又聞きのあと。",
-      a:{label:"相手への見方が、すぐ変わる", side:"A"},
-      b:{label:"本人と話すまで、判断を保留できる", side:"B"} },
-    { t:"時間が経つと。",
-      a:{label:"引きずったまま、消えない", side:"A"},
-      b:{label:"「本人の言葉じゃない」と、自然に離れられる", side:"B"} }
-  ],
-  results:{
-    A:{ name:"巻き込まれる側", sub:"つい、入り込む",
-      body:[
-        "本人からじゃない言葉に、心が深く持っていかれる。それだけ、人を真剣に受け止めているということだ。",
-        "ただ、又聞きの言葉は、発した人の言葉であって、あなたの真実ではない。握りしめるほど、噂に力を与えてしまう。",
-        "動く前の一呼吸で、渡す情報の量が変わる。気にしていないふりではなく、事実として脇に置く、が近い。"
-      ],
-      bridge:"じゃあ、向き合うべき「本物の指摘」と、ただの又聞きを、どこで見分けるのか。その見分けには、順番がある。" },
-    B:{ name:"置ける側", sub:"雑音として、通す",
-      body:[
-        "又聞きに動揺しても、時間を置けば「本人の言葉じゃない」と離れられる。いちばん消耗しない受け止め方だ。",
-        "本人に直接言わず誰かを介して伝えるのは、正面から向き合う自信がない側の動きだ。動じない人には、噂はただの雑音として通り過ぎる。",
-        "ただ、通しすぎると、本当に向き合うべき本人の声まで、雑音として流してしまうことがある。"
-      ],
-      bridge:"じゃあ、流していい又聞きと、受け取るべき本物の声を、どこで分けるのか。見分けの順番には、向きがある。" }
+window.KANKEI = {
+  start: 4,
+  home: {
+    eyebrow: "The Art of Temperature &amp; Distance",
+    kicker: "07-18（土） ── 又聞き",
+    title: "「〇〇さんが、あなたの<br>ことこう言ってたよ」",
+    lede: "本人からじゃない言葉ほど、なぜか深く刺さる。そのときの距離の取り方は、温度と距離で見える。1問目は、投稿で見たあの問いから。8問で、いまどこに立っているかが出る。所要 約2分。",
+    startSmall: "1問目は、投稿で見たあの問い"
   }
 };
 </script>
-<script src="assets/deepdive.js"></script>
+<script src="assets/kankei.js"></script>
 </body>
 </html>
