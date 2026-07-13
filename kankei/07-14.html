@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>好条件と好意の深堀り診断 ｜ 関係の温度と距離を整える技術</title>
+<meta name="description" content="「良くしてくれるのに、好きになれない」。8つの問いで、あなたがどっち側かが出る。">
+<meta property="og:title" content="「良くしてくれるのに、好きになれない」──8問で、どっち側か出る">
+<meta property="og:description" content="理由は、好意の大きさじゃない。距離の明け渡し方にある。">
+<meta name="theme-color" content="#fbf8f1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fbf8f1; --card:#f1ece1; --card-2:#efe7d8; --ink:#2b2620;
+    --muted:#8a7f70; --faint:#b6a68f; --amber:#a8763c; --amber-soft:#c69a5e; --line:#e4dccf; --line-2:#d8cdb8;
+    --serif:"Shippori Mincho B1", serif;
+    --sans:"Zen Kaku Gothic New", system-ui, sans-serif;
+    --latin:"Cormorant Garamond", serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%}
+  body{
+    background:var(--paper); color:var(--ink); font-family:var(--sans); font-weight:400; line-height:1.9;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    display:flex; justify-content:center; padding:clamp(24px,7vw,56px) 20px calc(72px + env(safe-area-inset-bottom));
+  }
+  #app{width:100%;max-width:500px}
+
+  .eyebrow{font-family:var(--latin);font-style:italic;font-size:16px;letter-spacing:.06em;color:var(--amber)}
+  .kicker{font-family:var(--latin);font-size:13px;letter-spacing:.14em;color:var(--muted);margin-top:6px}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(25px,6.6vw,32px);line-height:1.5;letter-spacing:.03em;margin:14px 0 18px;text-wrap:balance}
+  .lede{color:var(--muted);font-size:15px;letter-spacing:.02em}
+  .rule{height:1px;background:var(--line-2);margin:32px 0}
+
+  .start{display:block;width:100%;text-align:center;cursor:pointer;background:var(--amber);color:#fff;
+    border:1px solid var(--amber);border-radius:7px;padding:17px;font-family:var(--sans);font-size:16px;font-weight:500;
+    letter-spacing:.06em;transition:opacity .25s,transform .15s;-webkit-tap-highlight-color:transparent}
+  .start:hover{opacity:.9}.start:active{transform:translateY(1px)}
+  .start small{display:block;font-size:12px;font-weight:300;opacity:.82;margin-top:4px}
+
+  .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+  .qnum{font-family:var(--latin);font-size:15px;letter-spacing:.14em;color:var(--muted)}
+  .qnum b{color:var(--amber);font-weight:400}
+  .ticks{display:flex;gap:5px;flex:1;margin-left:16px}
+  .tick{flex:1;height:2px;background:var(--line-2);border-radius:2px;transition:background .5s}
+  .tick.on{background:var(--amber)}
+
+  /* 1軸の現在地（守る ⇔ 明け渡す） */
+  .scale{margin:8px 0 26px}
+  .scale svg{width:100%;display:block}
+  .scale text{font-family:var(--latin);font-size:11px;letter-spacing:.12em;fill:var(--muted)}
+  .scale .jp{font-family:var(--sans);font-size:10px;letter-spacing:.06em;fill:var(--faint)}
+  .track{stroke:var(--line-2);stroke-width:2;stroke-linecap:round}
+  .dot{fill:var(--amber);transition:cx .8s cubic-bezier(.22,1,.36,1)}
+  .halo{fill:var(--amber);opacity:.16;transition:cx .8s cubic-bezier(.22,1,.36,1)}
+
+  .qtext{font-family:var(--serif);font-size:clamp(19px,5vw,23px);font-weight:500;line-height:1.8;letter-spacing:.03em;margin-bottom:22px;text-wrap:balance}
+
+  .card{display:block;width:100%;text-align:left;cursor:pointer;background:var(--card);color:var(--ink);
+    border:1px solid var(--line);border-radius:7px;padding:18px 20px;margin-bottom:11px;
+    font-family:var(--sans);font-size:16px;font-weight:400;line-height:1.7;letter-spacing:.01em;
+    transition:border-color .3s,background .3s,transform .2s,box-shadow .3s;-webkit-tap-highlight-color:transparent}
+  .card:hover,.card:focus-visible{border-color:var(--amber);background:#f6f0e6;transform:translateY(-1px);box-shadow:0 6px 18px -12px rgba(120,86,40,.5);outline:none}
+  .card:active{transform:translateY(0)}
+  .card .k{display:inline-block;font-family:var(--latin);font-size:14px;letter-spacing:.14em;color:var(--amber);margin-right:10px}
+
+  .ghost{background:none;border:none;color:var(--muted);font-family:var(--sans);font-size:13px;letter-spacing:.05em;
+    cursor:pointer;padding:12px 0;text-decoration:underline;text-underline-offset:4px;-webkit-tap-highlight-color:transparent}
+  .ghost:hover{color:var(--ink)}
+
+  /* 結果 */
+  .r-code{font-family:var(--latin);font-size:14px;letter-spacing:.18em;color:var(--amber)}
+  .r-name{font-family:var(--serif);font-size:clamp(30px,8.4vw,40px);font-weight:600;letter-spacing:.05em;margin:8px 0 6px;line-height:1.35}
+  .r-sub{font-family:var(--serif);font-size:17px;color:var(--muted);letter-spacing:.03em;margin-bottom:6px}
+  .r-deg{font-family:var(--latin);font-size:13px;letter-spacing:.1em;color:var(--faint);font-variant-numeric:tabular-nums}
+  .body p{font-size:15px;letter-spacing:.02em;margin-bottom:15px;line-height:1.95}
+  .body p.strong{font-family:var(--serif);font-size:16.5px;font-weight:500;color:var(--ink)}
+  .bridge{background:var(--card-2);border:1px solid var(--line-2);border-radius:9px;padding:18px 20px;margin:6px 0 18px}
+  .bridge p{font-size:15px;line-height:1.9;margin-bottom:0;color:var(--ink)}
+  .bridge .lead{color:var(--muted);font-size:13.5px;margin-bottom:10px}
+
+  .cta{display:block;text-align:center;text-decoration:none;border-radius:7px;padding:18px;margin-top:4px;
+    font-size:16px;letter-spacing:.05em;background:var(--amber);border:1px solid var(--amber);color:#fff;font-weight:500;
+    transition:opacity .25s,transform .15s}
+  .cta:hover{opacity:.9}.cta:active{transform:translateY(1px)}
+  .cta small{display:block;font-size:12px;font-weight:300;opacity:.85;margin-top:4px}
+
+  .sig{margin-top:38px;font-size:12px;line-height:2;letter-spacing:.04em;color:var(--faint);text-align:center}
+  .sig span{font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.12em}
+
+  .fade{animation:fade .55s ease both}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+/* =====================================================================
+   曜日別・深堀り診断 ── 火曜 07-14「好条件と好意」
+   1テーマ・8問2択 → 1軸の二極（どっち側か）→ メンバーシップ
+   ※ このDATAを差し替えれば、水〜月も同じエンジンで作れる。
+   ===================================================================== */
+var MEMBERSHIP = "https://note.com/coconocanvas/membership?from=self";
+
+var DATA = {
+  date:"2026-07-14", weekday:"火", theme:"好条件と好意",
+  home:{
+    eyebrow:"The Art of Temperature & Distance",
+    title:"「良くしてくれるのに、<br>好きになれない」",
+    lede:"その理由は、好意の大きさじゃない。相手を内側に入れる——距離の明け渡し方にある。8つの問いで、あなたがどっち側かが出る。所要 約1分。"
+  },
+  /* poleA = 明け渡す（右）、poleB = 守る（左） */
+  axis:{ left:{name:"守る", en:"HOLD"}, right:{name:"明け渡す", en:"OPEN"} },
+  q:[
+    { t:"相手からの好意が、こちらの気持ちより先に大きくなっている。",
+      a:{label:"うれしくて、つい距離が近づく", side:"A"},
+      b:{label:"うれしいより先に、少し身構える", side:"B"} },
+    { t:"「なんでこんなに良くしてくれるんだろう」と感じたとき、まず。",
+      a:{label:"ありがたくて、応えたくなる", side:"A"},
+      b:{label:"理由を、確かめたくなる", side:"B"} },
+    { t:"条件のいい相手を前にすると。",
+      a:{label:"くれるものに、つい心が動く", side:"A"},
+      b:{label:"くれるものより、素でいられるかを見る", side:"B"} },
+    { t:"まだ好きかわからない段階で、相手が距離を詰めてきた。",
+      a:{label:"その流れに、乗ってしまう", side:"A"},
+      b:{label:"好きだと感じるまで、待つ", side:"B"} },
+    { t:"周りが「この人なら間違いない」と言う相手。",
+      a:{label:"その評価に、気持ちが引っぱられる", side:"A"},
+      b:{label:"評価より、自分の感覚を待つ", side:"B"} },
+    { t:"良くしてもらった分。",
+      a:{label:"返さなきゃ、と気持ちが動く", side:"A"},
+      b:{label:"もらうことと、好きは切り離せる", side:"B"} },
+    { t:"恋の始まりを思い返すと、たいてい。",
+      a:{label:"相手から来てくれて、応えるかたち", side:"A"},
+      b:{label:"自分の中で、じわっと育つかたち", side:"B"} },
+    { t:"「好きになろう」と、意識して思ったことがある。",
+      a:{label:"ある。条件が良ければ、なおさら", side:"A"},
+      b:{label:"ない。好きは、気づいたら始まっている", side:"B"} }
+  ],
+  results:{
+    A:{ name:"明け渡す側", sub:"先に、入れてしまう",
+      body:[
+        "良くしてくれる人を前にすると、距離を先に明け渡している。感情が追いつく前に、相手がもう内側にいる。",
+        "だから、好きになる前に「近い」が完成してしまう。好きになれないのではない。好きになる時間が、まだ来ていないだけだ。",
+        "明け渡す早さは、優しさでもある。ただ、早すぎると、自分の温度を確かめる前に、関係のかたちが決まってしまう。"
+      ],
+      bridge:"じゃあ、その「早さ」は、距離から整えるのか、それとも温度からか。順番を間違えると、たいてい元に戻る。" },
+    B:{ name:"守る側", sub:"先に、確かめる",
+      body:[
+        "良い条件を出されても、すぐには入れない。感情が本物になるまで、距離を保っていられる。",
+        "それは冷たさではなく、選ぶ強さだ。差し出されたものの大きさで、自分の気持ちを決めない。",
+        "ただ、守りが固いままだと、本当は届くはずの相手まで、外側に留めてしまうことがある。"
+      ],
+      bridge:"じゃあ、その守りを、どこから、どれだけゆるめるのか。ゆるめる順番には、向きがある。" }
+  }
+};
+
+var idx=0, picks=[], app=document.getElementById("app");
+
+/* 1軸マップ：pos は -1(守る) .. +1(明け渡す) */
+function scale(pos, lit){
+  var cx = 150 + pos*116;
+  return '<div class="scale"><svg viewBox="0 0 300 64" role="img" aria-label="守ると明け渡すの現在地">'
+    + '<line class="track" x1="34" y1="34" x2="266" y2="34"/>'
+    + '<text x="30" y="20" text-anchor="start">'+DATA.axis.left.en+'</text>'
+    + '<text class="jp" x="30" y="56" text-anchor="start">'+DATA.axis.left.name+'</text>'
+    + '<text x="270" y="20" text-anchor="end">'+DATA.axis.right.en+'</text>'
+    + '<text class="jp" x="270" y="56" text-anchor="end">'+DATA.axis.right.name+'</text>'
+    + (lit?'<circle class="halo" cx="'+cx+'" cy="34" r="13"/>':'')
+    + '<circle class="halo" cx="'+cx+'" cy="34" r="'+(lit?9:7)+'"/>'
+    + '<circle class="dot" cx="'+cx+'" cy="34" r="'+(lit?5:4)+'"/>'
+    + '</svg></div>';
+}
+function partialPos(){
+  var n=picks.length; if(!n) return 0;
+  var a=0; for(var i=0;i<n;i++){ if(picks[i]==='A') a++; }
+  return (a/n)*2 - 1; // 0..1 → -1..1（守る〜明け渡す）
+}
+
+function home(){
+  var d=DATA.home;
+  app.innerHTML='<div class="fade">'
+    + '<p class="eyebrow">'+d.eyebrow+'</p>'
+    + '<p class="kicker">'+DATA.date+'（'+DATA.weekday+'） ── '+DATA.theme+'</p>'
+    + '<h1>'+d.title+'</h1>'
+    + '<p class="lede">'+d.lede+'</p>'
+    + '<div class="rule"></div>'
+    + '<button class="start" id="go">8問ではじめる<small>2択・約1分・あなたがどっち側か出る</small></button>'
+    + '<p class="sig">延べ5万人超との対話から。<br><span>Coco Methodology</span></p>'
+    + '</div>';
+  document.getElementById("go").onclick=function(){ idx=0; picks=[]; question(); };
+}
+
+function question(){
+  var item=DATA.q[idx], ticks="";
+  for(var i=0;i<DATA.q.length;i++){ ticks+='<div class="tick'+(i<idx?" on":"")+'"></div>'; }
+  app.innerHTML='<div class="fade">'
+    + '<div class="top"><span class="qnum">Q <b>'+(idx+1)+'</b> / 8</span><div class="ticks">'+ticks+'</div></div>'
+    + scale(partialPos(), false)
+    + '<p class="qtext">'+item.t+'</p>'
+    + '<button class="card" data-s="'+item.a.side+'"><span class="k">A</span>'+item.a.label+'</button>'
+    + '<button class="card" data-s="'+item.b.side+'"><span class="k">B</span>'+item.b.label+'</button>'
+    + (idx>0?'<button class="ghost" id="back">ひとつ戻る</button>':'')
+    + '</div>';
+  var cs=app.querySelectorAll('[data-s]');
+  for(var j=0;j<cs.length;j++){
+    (function(b){ b.onclick=function(){
+      picks[idx]=b.getAttribute('data-s'); idx++;
+      if(idx<DATA.q.length){ question(); } else { result(); }
+      window.scrollTo({top:0,behavior:"smooth"});
+    };})(cs[j]);
+  }
+  var bk=document.getElementById("back");
+  if(bk) bk.onclick=function(){ idx--; picks.pop(); question(); window.scrollTo({top:0,behavior:"smooth"}); };
+}
+
+function result(){
+  var a=0; for(var i=0;i<picks.length;i++){ if(picks[i]==='A') a++; }
+  var side = a>=4 ? "A" : "B";
+  var deg = Math.max(a, 8-a);
+  var R = DATA.results[side];
+  var pos = (a/8)*2 - 1;
+  var body = R.body.map(function(p,i){ return '<p'+(i===R.body.length-1?' class="strong"':'')+'>'+p+'</p>'; }).join("");
+  app.innerHTML='<div class="fade">'
+    + '<p class="r-code">YOUR SIDE ── '+DATA.theme+'</p>'
+    + '<h2 class="r-name">'+R.name+'</h2>'
+    + '<p class="r-sub">'+R.sub+'</p>'
+    + '<p class="r-deg">'+deg+' ／ 8</p>'
+    + scale(pos, true)
+    + '<div class="body">'+body+'</div>'
+    + '<div class="rule"></div>'
+    + '<div class="bridge"><p class="lead">ただ、これは「なぜそうなるか」の話。「どうするか」ではない。</p><p>'+R.bridge+'</p></div>'
+    + '<a class="cta" href="'+MEMBERSHIP+'" target="_blank" rel="noopener">その先は、チームCoco で<small>チームCoco ―― 恋愛と関係</small></a>'
+    + '<button class="ghost" id="again">もう一度診断する</button>'
+    + '<p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>'
+    + '</div>';
+  document.getElementById("again").onclick=function(){ idx=0; picks=[]; home(); window.scrollTo({top:0,behavior:"smooth"}); };
+}
+
+home();
+</script>
+</body>
+</html>
