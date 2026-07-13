@@ -20,6 +20,10 @@
   var DAY_ANSWER = D.DAY_ANSWER;
   var FIELD = D.field || { top: "溢れる", bottom: "隠す", left: "閉じる", right: "明け渡す" };
   var HUB = D.hubUrl || "/";
+  /* 高/低の閾値（ドメイン別）。軸は1〜4で中心=3（=適温・適距離）なので、
+     レンジ中点20ではなく実分布の中央値に合わせる。現在地マップも同じ中心に補正。 */
+  var TEMP_CUT = D.tempCut || 21, DIST_CUT = D.distCut || 21;
+  var T_CENTER = (TEMP_CUT - 0.5) / 8, D_CENTER = (DIST_CUT - 0.5) / 8;
 
   /* 出題順：start を先頭にして、残りの投稿分 → Q8 は常に最後 */
   var order;
@@ -65,7 +69,7 @@
     var n = 0, ts = 0, ds = 0;
     for (var i = 0; i < answers.length; i++) { if (answers[i]) { ts += answers[i].temp; ds += answers[i].dist; n++; } }
     if (n === 0) return { x: 0, y: 0 };
-    var ty = (ts / n - 2.5) / 1.5, tx = (ds / n - 2.5) / 1.5;
+    var ty = (ts / n - T_CENTER) / 1.3, tx = (ds / n - D_CENTER) / 1.3;
     return { x: Math.max(-1, Math.min(1, tx)), y: Math.max(-1, Math.min(1, ty)) };
   }
 
@@ -146,12 +150,12 @@
   function result() {
     var ts = 0, ds = 0;
     for (var i = 0; i < answers.length; i++) { if (answers[i]) { ts += answers[i].temp; ds += answers[i].dist; } }
-    var tempHigh = ts >= 21, distHigh = ds >= 21;
+    var tempHigh = ts >= TEMP_CUT, distHigh = ds >= DIST_CUT;
     var key = (tempHigh ? "H" : "L") + (distHigh ? "H" : "L");
     var T = TYPES[key];
     var tName = nameOf(TEMP_NAMES, ts), dName = nameOf(DIST_NAMES, ds);
-    var px = Math.max(-1, Math.min(1, (ds / 8 - 2.5) / 1.5));
-    var py = Math.max(-1, Math.min(1, (ts / 8 - 2.5) / 1.5));
+    var px = Math.max(-1, Math.min(1, (ds / 8 - D_CENTER) / 1.3));
+    var py = Math.max(-1, Math.min(1, (ts / 8 - T_CENTER) / 1.3));
 
     var lines = T.anchors.map(function (qi) {
       return '<li><span class="lq">Q' + (qi + 1) + '</span>' + answers[qi].t + '</li>';

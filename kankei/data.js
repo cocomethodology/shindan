@@ -6,6 +6,7 @@ window.SHINDAN = {
   tempNames: ["凍結", "隠す", "選ぶ", "溢れる"],
   distNames: ["閉じる", "守る", "測る", "明け渡す"],
   field: { top: "溢れる", bottom: "隠す", left: "閉じる", right: "明け渡す" },
+  tempCut: 23, distCut: 25,   /* 高/低の閾値＝実分布の中央値（4^8列挙で HH33/HL24/LH17/LL25） */
 
   Q: [
     { hook:"「こんなに良くしてくれるのに、なんで好きになれないんだろう」",

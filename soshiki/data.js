@@ -8,6 +8,7 @@ window.SHINDAN = {
   tempNames: ["凍結", "抑える", "選ぶ", "出す"],
   distNames: ["閉じる", "守る", "測る", "抱え込む"],
   field: { top: "出す", bottom: "抑える", left: "閉じる", right: "抱え込む" },
+  tempCut: 21, distCut: 22,   /* 高/低の閾値＝実分布の中央値（4^8列挙で HH31/HL19/LH26/LL24） */
 
   Q: [
     { hook:"「誰のせいですか」と問い詰められた瞬間、あなたはどう返す？",
