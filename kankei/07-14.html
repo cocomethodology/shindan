@@ -90,6 +90,20 @@
   .sig{margin-top:38px;font-size:12px;line-height:2;letter-spacing:.04em;color:var(--faint);text-align:center}
   .sig span{font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.12em}
 
+  /* 8問完了のインタースティシャル */
+  .done-wrap{text-align:center;padding:14px 0 4px}
+  .done-mark{font-family:var(--latin);font-size:14px;letter-spacing:.24em;color:var(--amber);margin-bottom:16px}
+  .done-check{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--amber);margin:0 auto 20px;position:relative}
+  .done-check::after{content:"";position:absolute;left:18px;top:15px;width:12px;height:22px;
+    border-right:2px solid var(--amber);border-bottom:2px solid var(--amber);transform:rotate(40deg)}
+  .done-h{font-family:var(--serif);font-size:clamp(23px,6.2vw,29px);font-weight:600;letter-spacing:.04em;line-height:1.5;margin-bottom:12px}
+  .done-sub{color:var(--muted);font-size:14.5px;letter-spacing:.02em;margin-bottom:28px}
+
+  /* 結果ページ冒頭バナー */
+  .result-banner{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+  .result-banner .rb-line{flex:1;height:1px;background:var(--line-2)}
+  .result-banner .rb-label{font-family:var(--serif);font-size:14px;font-weight:600;letter-spacing:.3em;color:var(--amber);white-space:nowrap}
+
   .fade{animation:fade .55s ease both}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -210,12 +224,27 @@ function question(){
   for(var j=0;j<cs.length;j++){
     (function(b){ b.onclick=function(){
       picks[idx]=b.getAttribute('data-s'); idx++;
-      if(idx<DATA.q.length){ question(); } else { result(); }
+      if(idx<DATA.q.length){ question(); } else { done(); }
       window.scrollTo({top:0,behavior:"smooth"});
     };})(cs[j]);
   }
   var bk=document.getElementById("back");
   if(bk) bk.onclick=function(){ idx--; picks.pop(); question(); window.scrollTo({top:0,behavior:"smooth"}); };
+}
+
+function done(){
+  var ticks="";
+  for(var i=0;i<DATA.q.length;i++){ ticks+='<div class="tick on"></div>'; }
+  app.innerHTML='<div class="fade">'
+    + '<div class="top"><span class="qnum">8 <b>/</b> 8　完了</span><div class="ticks">'+ticks+'</div></div>'
+    + '<div class="done-wrap">'
+    + '<p class="done-mark">ALL DONE ── 8問、おわり</p>'
+    + '<div class="done-check" aria-hidden="true"></div>'
+    + '<p class="done-h">ぜんぶ、答えました。</p>'
+    + '<p class="done-sub">あなたがどっち側か、出ました。</p>'
+    + '<button class="start" id="see">結果を見る<small>あなたの側と、その理由</small></button>'
+    + '</div></div>';
+  document.getElementById("see").onclick=function(){ result(); window.scrollTo({top:0,behavior:"smooth"}); };
 }
 
 function result(){
@@ -226,6 +255,7 @@ function result(){
   var pos = (a/8)*2 - 1;
   var body = R.body.map(function(p,i){ return '<p'+(i===R.body.length-1?' class="strong"':'')+'>'+p+'</p>'; }).join("");
   app.innerHTML='<div class="fade">'
+    + '<div class="result-banner"><span class="rb-line"></span><span class="rb-label">診断結果</span><span class="rb-line"></span></div>'
     + '<p class="r-code">YOUR SIDE ── '+DATA.theme+'</p>'
     + '<h2 class="r-name">'+R.name+'</h2>'
     + '<p class="r-sub">'+R.sub+'</p>'
