@@ -220,7 +220,7 @@
     var lede = h.lede || "関係がうまくいかないとき、原因は愛情の量でも相性でもない。感情の温度と、相手との距離。その2つの立ち位置にある。8つの問いで、いまどこに立っているかが出る。所要 約2分。";
     var startSmall = h.startSmall || "1問ずつ・全8問・単一選択";
     app.innerHTML = '<div class="fade">'
-      + '<a class="hub-back" href="/kankei">&larr; 診断をえらぶ</a>'
+      + '<button class="hub-back" id="pageBack" type="button">&larr; 戻る</button>'
       + '<p class="eyebrow">' + eyebrow + '</p>'
       + kicker
       + '<h1>' + title + '</h1>'
@@ -230,6 +230,8 @@
       + '<p class="sig">ネイル・飲食・BAR運営20年。延べ5万人超との対話から。<br><span>Coco Methodology</span></p>'
       + '</div>';
     document.getElementById("go").onclick = function () { idx = 0; answers = []; question(); };
+    var pb = document.getElementById("pageBack");
+    if (pb) pb.onclick = function () { if (history.length > 1) history.back(); else location.assign("/kankei"); };
   }
 
   function question() {
@@ -328,7 +330,7 @@
         + '<p>' + T.bridge + '</p>'
         + '<a class="cta" href="' + MEMBERSHIP + '" target="_blank" rel="noopener">チームCoco ―― 恋愛と関係<small>整える順番を、ひとつずつ</small></a>'
       + '</div>'
-      + '<button class="ghost" id="again">もう一度診断する</button>'
+      + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="/kankei">診断一覧へ</a></div>'
       + '<p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>'
       + '</div>';
     document.getElementById("again").onclick = function () { idx = 0; answers = []; home(); window.scrollTo({ top: 0, behavior: "smooth" }); };
