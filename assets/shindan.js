@@ -176,7 +176,7 @@
     var ts = 0, ds = 0;
     for (var i = 0; i < answers.length; i++) { if (answers[i]) { ts += answers[i].temp; ds += answers[i].dist; } }
     var C = D.center;
-    if (C && D.CENTER && ts >= C.tLo && ts <= C.tHi && ds >= C.dLo && ds <= C.dHi) { resultCenter(ts, ds); return; }
+    if (C && D.CENTER && (Math.abs(ts - C.t) + Math.abs(ds - C.d)) <= C.r) { resultCenter(ts, ds); return; }
     var tempHigh = ts >= TEMP_CUT, distHigh = ds >= DIST_CUT;
     var key = (tempHigh ? "H" : "L") + (distHigh ? "H" : "L");
     var T = TYPES[key];
