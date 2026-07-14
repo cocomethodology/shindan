@@ -9,6 +9,13 @@ window.SHINDAN = {
   distNames: ["閉じる", "守る", "測る", "抱え込む"],
   field: { top: "出す", bottom: "抑える", left: "閉じる", right: "抱え込む" },
   tempCut: 21, distCut: 22,   /* 高/低の閾値＝実分布の中央値（4^8列挙で HH31/HL19/LH26/LL24） */
+  share: {                          /* 組織＝Xに拡散。handleは確定次第入れる（空なら@を省く） */
+    platform: "x",
+    label: "この結果をXに共有",
+    url: "https://shindan-flax.vercel.app/soshiki",
+    handle: "",                     /* 例 "@..." ── Coco確定待ち */
+    hashtag: "温度と距離"
+  },
   center: { t: 24, d: 24, r: 1 },   /* 中心＝マンハッタン距離|Δ|≤1（24/24から1問だけズレた人まで）。4^8で出現率3.4% */
   CENTER: {
     name: "保つ人",

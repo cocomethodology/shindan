@@ -20,6 +20,34 @@
   var DAY_ANSWER = D.DAY_ANSWER;
   var FIELD = D.field || { top: "溢れる", bottom: "隠す", left: "閉じる", right: "明け渡す" };
   var HUB = D.hubUrl || "/";
+
+  /* 結果をSNSに拡散する導線（ドメイン別）。組織＝X、恋愛＝Threads。
+     出口はメンバーシップ1本のまま。共有は④CTAの下に従属配置（主導線を割らない）。 */
+  var SHARE = D.share || null;
+  var X_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.65l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>';
+  var TH_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.85 13.85 0 0 1 3.02.142c-.126-.742-.375-1.332-.742-1.762-.502-.588-1.279-.889-2.309-.896h-.028c-.826 0-1.951.227-2.667 1.297L9.145 8.102c.955-1.412 2.5-2.088 4.226-2.088h.043c2.881.017 4.59 1.816 4.759 4.965.096.041.19.084.284.129 1.331.626 2.303 1.573 2.813 2.74.71 1.626.776 4.281-1.632 6.643-1.842 1.804-4.075 2.618-7.253 2.641z"/></svg>';
+  function shareBlock(typeName, tagline) {
+    if (!SHARE) return "";
+    var dl = D.domainLabel || "";
+    var tag = (tagline || "").replace(/<[^>]+>/g, "");
+    var lines = [
+      "【" + dl + "の 温度×距離 診断】",
+      "わたしは「" + typeName + "」でした。",
+      tag,
+      "",
+      "あなたは、どこに立っている？",
+      (SHARE.handle ? SHARE.handle + " " : "") + "#" + (SHARE.hashtag || "温度と距離")
+    ];
+    var text = lines.join("\n");
+    var url = SHARE.url || HUB;
+    var href = (SHARE.platform === "threads")
+      ? "https://www.threads.net/intent/post?text=" + encodeURIComponent(text + "\n" + url)
+      : "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + encodeURIComponent(url);
+    var icon = (SHARE.platform === "threads") ? TH_ICON : X_ICON;
+    return '<div class="share-row"><a class="share" href="' + href + '" target="_blank" rel="noopener">'
+      + '<span class="sh-ico">' + icon + '</span><span>' + SHARE.label + '</span></a></div>';
+  }
+
   /* 高/低の閾値（ドメイン別）。軸は1〜4で中心=3（=適温・適距離）なので、
      レンジ中点20ではなく実分布の中央値に合わせる。現在地マップも同じ中心に補正。 */
   var TEMP_CUT = D.tempCut || 21, DIST_CUT = D.distCut || 21;
@@ -166,6 +194,7 @@
       + field(0, 0, false)
       + '<div class="block"><div class="body">' + body + '</div></div>'
       + '<div class="block"><div class="answer"><p class="a-q">' + CC.question + '</p></div></div>'
+      + shareBlock(CC.name, CC.tag)
       + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="' + HUB + '">診断一覧へ</a></div>'
       + '<p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>'
       + '</div>';
@@ -221,6 +250,7 @@
         + '<p>' + T.bridge + '</p>'
         + '<a class="cta" href="' + MEMBERSHIP + '" target="_blank" rel="noopener">' + D.ctaLabel + '<small>整える順番を、ひとつずつ</small></a>'
       + '</div>'
+      + shareBlock(T.name, T.tag)
       + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="' + HUB + '">診断一覧へ</a></div>'
       + '<p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>'
       + '</div>';

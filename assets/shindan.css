@@ -131,6 +131,15 @@ h1{font-family:var(--serif);font-weight:500;font-size:clamp(27px,7.2vw,34px);lin
 .cta:hover{opacity:.9}.cta:active{transform:translateY(1px)}
 .cta small{display:block;font-size:12px;font-weight:300;opacity:.85;margin-top:4px;letter-spacing:.03em}
 
+.share-row{margin-top:14px;text-align:center}
+.share{display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;
+  border:1px solid var(--line-2);border-radius:7px;padding:13px 22px;
+  font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.05em;color:var(--muted);
+  background:none;transition:color .2s ease,border-color .2s ease,background .2s ease;-webkit-tap-highlight-color:transparent}
+.share:hover{color:var(--ink);border-color:var(--ink);background:var(--card)}
+.share .sh-ico{display:inline-flex}
+.share .sh-ico svg{width:15px;height:15px;display:block}
+
 .sig{margin-top:40px;font-size:12px;line-height:2;letter-spacing:.04em;color:var(--faint);text-align:center}
 .sig span{font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.12em}
 

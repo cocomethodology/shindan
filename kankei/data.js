@@ -7,6 +7,13 @@ window.SHINDAN = {
   distNames: ["閉じる", "守る", "測る", "明け渡す"],
   field: { top: "溢れる", bottom: "隠す", left: "閉じる", right: "明け渡す" },
   tempCut: 23, distCut: 25,   /* 高/低の閾値＝実分布の中央値（4^8列挙で HH33/HL24/LH17/LL25） */
+  share: {                          /* 恋愛＝Threadsに拡散。handleは確定次第入れる（空なら@を省く） */
+    platform: "threads",
+    label: "この結果をThreadsに共有",
+    url: "https://shindan-flax.vercel.app/kankei",
+    handle: "",                     /* 例 "@coconocanvas" ── Coco確定待ち */
+    hashtag: "温度と距離"
+  },
   center: { t: 24, d: 24, r: 1 },   /* 中心＝マンハッタン距離|Δ|≤1（24/24から1問だけズレた人まで）。4^8で出現率10.9% */
   CENTER: {
     name: "保つ人",
