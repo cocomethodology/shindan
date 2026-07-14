@@ -11,7 +11,7 @@ window.SHINDAN = {
     platform: "threads",
     label: "この結果をThreadsに共有",
     url: "https://shindan-flax.vercel.app/kankei",
-    handle: "",                     /* 例 "@coconocanvas" ── Coco確定待ち */
+    handle: "@coconocanvas",
     hashtag: "温度と距離"
   },
   center: { t: 24, d: 24, r: 1 },   /* 中心＝マンハッタン距離|Δ|≤1（24/24から1問だけズレた人まで）。4^8で出現率10.9% */
