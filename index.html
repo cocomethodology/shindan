@@ -63,10 +63,14 @@
   .cast .cast-h{font-family:var(--latin);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
     color:var(--faint);text-align:center;margin-bottom:14px}
   .cast .row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-  .who{display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px;padding:6px 4px}
+  .who{display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px;padding:6px 4px;
+    text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
   .who .av{width:64px;height:64px;border-radius:50%;object-fit:cover;
-    background:var(--card);border:1px solid var(--line-2)}
+    background:var(--card);border:1px solid var(--line-2);
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease}
+  .who:hover .av{transform:translateY(-2px);border-color:var(--amber);box-shadow:0 8px 18px -10px rgba(168,118,60,.5)}
   .who .nm{font-family:var(--serif);font-size:14px;font-weight:600;letter-spacing:.04em;color:var(--ink)}
+  .who:hover .nm{color:var(--amber)}
   .who .role{font-size:10.5px;letter-spacing:.06em;color:var(--faint)}
   .social{display:flex;justify-content:center;gap:24px;margin-top:24px}
   .social a{font-family:var(--sans);font-size:12px;letter-spacing:.08em;color:var(--amber);
@@ -113,9 +117,9 @@
     <div class="cast">
       <p class="cast-h">Voices ・ 三つの声</p>
       <div class="row">
-        <div class="who"><img class="av" src="/assets/char/shizuku-av.png" alt="しずく" width="64" height="64" loading="lazy"><p class="nm">しずく</p><p class="role">亀・静けさと芯</p></div>
-        <div class="who"><img class="av" src="/assets/char/shiratama-av.png" alt="しらたま" width="64" height="64" loading="lazy"><p class="nm">しらたま</p><p class="role">猫・繊細と共感</p></div>
-        <div class="who"><img class="av" src="/assets/char/hiyori-av.png" alt="ひより" width="64" height="64" loading="lazy"><p class="nm">ひより</p><p class="role">鳥・自由と選択</p></div>
+        <a class="who" href="/voices/shizuku"><img class="av" src="/assets/char/shizuku-av.png" alt="しずく" width="64" height="64" loading="lazy"><p class="nm">しずく</p><p class="role">亀・静けさと芯</p></a>
+        <a class="who" href="/voices/shiratama"><img class="av" src="/assets/char/shiratama-av.png" alt="しらたま" width="64" height="64" loading="lazy"><p class="nm">しらたま</p><p class="role">猫・繊細と共感</p></a>
+        <a class="who" href="/voices/hiyori"><img class="av" src="/assets/char/hiyori-av.png" alt="ひより" width="64" height="64" loading="lazy"><p class="nm">ひより</p><p class="role">鳥・自由と選択</p></a>
       </div>
     </div>
     <nav class="social">

@@ -1,0 +1,41 @@
+:root{
+  --paper:#fbf8f1; --card:#f6f0e6; --card-2:#efe7d8; --ink:#2b2620;
+  --muted:#8a7f70; --faint:#b6a68f; --amber:#a8763c; --slate:#7e97a8; --line:#e4dccf; --line-2:#d8cdb8;
+  --serif:"Shippori Mincho B1", serif;
+  --sans:"Zen Kaku Gothic New", system-ui, sans-serif;
+  --latin:"Cormorant Garamond", serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.9;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  display:flex;justify-content:center;padding:clamp(24px,7vw,52px) 20px calc(64px + env(safe-area-inset-bottom))}
+#app{width:100%;max-width:500px}
+.backs{display:flex;flex-direction:column;align-items:flex-start;gap:7px;margin-bottom:18px}
+.pageback{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-family:var(--sans);
+  font-size:13px;letter-spacing:.05em;background:none;border:none;padding:0;cursor:pointer;
+  text-decoration:none;transition:color .2s ease;-webkit-tap-highlight-color:transparent}
+.pageback:hover{color:var(--amber)}
+.eyebrow{font-family:var(--latin);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);text-align:center}
+.v-fig{margin:14px 0 6px;text-align:center;line-height:0}
+.v-fig img{width:min(320px,72%);height:auto;display:inline-block;filter:drop-shadow(0 12px 24px rgba(120,86,40,.14))}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,7vw,36px);letter-spacing:.06em;text-align:center;margin-top:6px}
+.role{text-align:center;font-size:12px;letter-spacing:.14em;color:var(--faint);margin-top:6px}
+.intro{margin-top:22px;color:var(--muted);font-size:15px;letter-spacing:.02em;line-height:2.05}
+.voice{margin:22px 0 4px;text-align:center;font-family:var(--serif);font-size:19px;letter-spacing:.05em;
+  color:var(--ink);line-height:1.7}
+.rule{height:1px;background:var(--line-2);margin:28px 0 22px}
+.v-nav{display:flex;flex-direction:column;gap:12px}
+.v-item{display:flex;align-items:baseline;justify-content:space-between;text-decoration:none;color:var(--ink);
+  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 18px;position:relative;overflow:hidden;
+  transition:border-color .25s ease, background .25s ease, transform .18s ease}
+.v-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent,var(--amber))}
+.v-item.love{--accent:var(--slate)} .v-item.work{--accent:var(--amber)}
+.v-item:hover{border-color:var(--accent,var(--amber));background:#f7f1e7;transform:translateY(-1px)}
+.v-item .t{font-family:var(--serif);font-size:16px;font-weight:600;letter-spacing:.03em}
+.v-item .arw{font-family:var(--latin);font-size:15px;color:var(--accent,var(--amber))}
+.sig{margin-top:34px;font-size:12.5px;line-height:2;letter-spacing:.05em;color:var(--faint);text-align:center}
+.sig span{font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.12em}
+.fade{animation:fade .6s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
