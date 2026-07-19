@@ -30,6 +30,12 @@
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
     display:flex;justify-content:center;align-items:center;padding:clamp(28px,7vw,60px) 20px calc(60px + env(safe-area-inset-bottom))}
   #app{width:100%;max-width:520px}
+  .brand{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:6px}
+  .brand .logo{width:clamp(112px,26vw,140px);height:auto;
+    filter:drop-shadow(0 6px 16px rgba(168,118,60,.22))}
+  .brand .wm{font-family:var(--latin);font-size:12px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--faint);margin-top:10px}
+  .hero{text-align:center}
   .eyebrow{font-family:var(--latin);font-style:italic;font-size:16px;letter-spacing:.06em;color:var(--amber)}
   h1{font-family:var(--serif);font-weight:500;font-size:clamp(26px,6.6vw,33px);line-height:1.5;letter-spacing:.03em;margin:14px 0 16px;text-wrap:balance}
   .lede{color:var(--muted);font-size:15px;letter-spacing:.02em}
@@ -60,9 +66,15 @@
 <body>
 <div id="app">
   <div class="fade">
-    <p class="eyebrow">The Art of Temperature &amp; Distance</p>
-    <h1>関係の温度と<br>距離を整える技術</h1>
-    <p class="lede">うまくいかない原因は、熱意でも相性でもない。感情の温度と、相手との距離。その2つの立ち位置にある。温度も距離も、職場にも恋愛にも、両方ある。</p>
+    <div class="brand">
+      <img class="logo" src="/assets/logo.png" alt="Coco Methodology" width="140" height="133">
+      <p class="wm">Coco Methodology</p>
+    </div>
+    <div class="hero">
+      <p class="eyebrow">The Art of Temperature &amp; Distance</p>
+      <h1>関係の温度と<br>距離を整える技術</h1>
+      <p class="lede">うまくいかない原因は、熱意でも相性でもない。感情の温度と、相手との距離。その2つの立ち位置にある。温度も距離も、職場にも恋愛にも、両方ある。</p>
+    </div>
     <div class="rule"></div>
     <p class="choose">どちらの温度と距離を、確かめますか</p>
     <nav class="list">
