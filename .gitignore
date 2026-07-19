@@ -145,3 +145,4 @@ vite.config.ts.timestamp-*
 # OGP generation (build-time only; not needed at runtime — site uses Google Fonts CDN)
 /assets/fonts/
 /oggen.html
+/assets/logo-gold.png
