@@ -91,7 +91,14 @@
   if (!app || !D.Q) return;
 
   function clampIdx(a) { return a < 1 ? 1 : (a > 4 ? 4 : a); }
-  function nameOf(names, score) { return names[clampIdx(Math.round(score / 8)) - 1]; }
+  /* ラベルの高/低は型判定と同じ閾値(cut)で割る。さらに各半分を2分割して4段階に。
+     → index>=2 ⇔ score>=cut ⇔ 高。ラベルの側が必ず型と一致し、矛盾しない。 */
+  function nameOf(names, score, cut) {
+    var c = cut || 21, idx;
+    if (score < c) { idx = (score < (8 + c) / 2) ? 0 : 1; }
+    else { idx = (score < (c + 32) / 2) ? 2 : 3; }
+    return names[idx];
+  }
 
   function field(px, py, lit) {
     var q = "";
@@ -204,7 +211,7 @@
   /* 5つ目の状態：中心（整っている人）。2×2は中心を表現できないため分離。 */
   function resultCenter(ts, ds) {
     var CC = D.CENTER;
-    var tName = nameOf(TEMP_NAMES, ts), dName = nameOf(DIST_NAMES, ds);
+    var tName = nameOf(TEMP_NAMES, ts, TEMP_CUT), dName = nameOf(DIST_NAMES, ds, DIST_CUT);
     var body = CC.body.map(function (p, i) {
       return '<p' + (i === CC.body.length - 1 ? ' class="strong"' : '') + '>' + p + '</p>';
     }).join("");
@@ -236,7 +243,7 @@
     var tempHigh = ts >= TEMP_CUT, distHigh = ds >= DIST_CUT;
     var key = (tempHigh ? "H" : "L") + (distHigh ? "H" : "L");
     var T = TYPES[key];
-    var tName = nameOf(TEMP_NAMES, ts), dName = nameOf(DIST_NAMES, ds);
+    var tName = nameOf(TEMP_NAMES, ts, TEMP_CUT), dName = nameOf(DIST_NAMES, ds, DIST_CUT);
     var px = Math.max(-1, Math.min(1, (ds / 8 - D_CENTER) / 1.3));
     var py = Math.max(-1, Math.min(1, (ts / 8 - T_CENTER) / 1.3));
 
