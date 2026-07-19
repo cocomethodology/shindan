@@ -217,6 +217,7 @@
     }).join("");
     app.innerHTML = '<div class="fade">'
       + '<div class="result-banner"><span class="rb-line"></span><span class="rb-label">診断結果</span><span class="rb-line"></span></div>'
+      + (CFG.caution ? '<div class="caution">' + CFG.caution + '</div>' : '')
       + '<p class="r-code">YOUR TYPE ── ' + D.domainLabel + '</p>'
       + '<h2 class="r-name">' + CC.name + '</h2>'
       + '<p class="r-tag">' + CC.tag + '</p>'
@@ -264,6 +265,7 @@
 
     app.innerHTML = '<div class="fade">'
       + '<div class="result-banner"><span class="rb-line"></span><span class="rb-label">診断結果</span><span class="rb-line"></span></div>'
+      + (CFG.caution ? '<div class="caution">' + CFG.caution + '</div>' : '')
       + '<p class="r-code">YOUR TYPE ── ' + D.domainLabel + '</p>'
       + '<h2 class="r-name">' + T.name + '</h2>'
       + '<p class="r-tag">' + T.tag + '</p>'
