@@ -3,7 +3,8 @@
    KV未接続でも 200 を返して診断側は壊さない（集計されないだけ）。 */
 module.exports = async (req, res) => {
   if (req.method !== "POST") { res.status(405).json({ ok: false }); return; }
-  var url = process.env.KV_REST_API_URL, token = process.env.KV_REST_API_TOKEN;
+  var url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  var token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
   if (!url || !token) { res.status(200).json({ ok: false, reason: "kv-not-configured" }); return; }
 
   var body = req.body;

@@ -1,7 +1,8 @@
 /* 集計の読み出し（非公開）。STATS_KEY を設定していれば ?key=... 必須。
    返すのは型分布・入口別・日×型・合計の集計値のみ。 */
 module.exports = async (req, res) => {
-  var url = process.env.KV_REST_API_URL, token = process.env.KV_REST_API_TOKEN;
+  var url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  var token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
   var KEY = process.env.STATS_KEY;
   var given = (req.query && req.query.key) || "";
   if (KEY && given !== KEY) { res.status(401).json({ error: "unauthorized" }); return; }
