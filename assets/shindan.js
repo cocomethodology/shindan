@@ -227,6 +227,7 @@
       + field(0, 0, false)
       + '<div class="block"><div class="body">' + body + '</div></div>'
       + '<div class="block"><div class="answer"><p class="a-q">' + CC.question + '</p></div></div>'
+      + (CC.cta ? '<div class="block"><a class="cta" href="' + MEMBERSHIP + '" target="_blank" rel="noopener">' + D.ctaLabel + '<small>' + CC.cta + '</small></a></div>' : '')
       + charBlock("center")
       + shareBlock(CC.name, CC.tag, "ちょうど中心", "ちょうど中心")
       + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="' + HUB + '">診断一覧へ</a><a class="ghost" href="/">&uarr; TOPへ戻る</a></div>'
@@ -239,7 +240,12 @@
     var ts = 0, ds = 0;
     for (var i = 0; i < answers.length; i++) { if (answers[i]) { ts += answers[i].temp; ds += answers[i].dist; } }
     var C = D.center;
-    if (C && D.CENTER && (Math.abs(ts - C.t) + Math.abs(ds - C.d)) <= C.r) { resultCenter(ts, ds); return; }
+    if (C && D.CENTER) {
+      var inCenter = (C.tLo != null)
+        ? (ts >= C.tLo && ts <= C.tHi && ds >= C.dLo && ds <= C.dHi)   /* 帯（矩形） */
+        : (Math.abs(ts - C.t) + Math.abs(ds - C.d) <= C.r);            /* 旧・マンハッタン点 */
+      if (inCenter) { resultCenter(ts, ds); return; }
+    }
     var tempHigh = ts >= TEMP_CUT, distHigh = ds >= DIST_CUT;
     var key = (tempHigh ? "H" : "L") + (distHigh ? "H" : "L");
     var T = TYPES[key];
