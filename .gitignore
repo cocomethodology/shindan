@@ -141,3 +141,7 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# OGP generation (build-time only; not needed at runtime — site uses Google Fonts CDN)
+/assets/fonts/
+/oggen.html
