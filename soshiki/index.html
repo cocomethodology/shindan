@@ -34,6 +34,9 @@
     font-size:13px;letter-spacing:.05em;background:none;border:none;padding:0;cursor:pointer;margin-bottom:16px;
     transition:color .2s ease;-webkit-tap-highlight-color:transparent}
   .pageback:hover{color:var(--amber)}
+  .backs{display:flex;flex-direction:column;align-items:flex-start;gap:7px;margin-bottom:16px}
+  .backs .pageback{margin-bottom:0}
+  .tohome{text-decoration:none}
   .eyebrow{font-family:var(--latin);font-style:italic;font-size:16px;letter-spacing:.06em;color:var(--amber)}
   h1{font-family:var(--serif);font-weight:500;font-size:clamp(27px,7vw,34px);line-height:1.45;letter-spacing:.03em;margin:14px 0 16px;text-wrap:balance}
   .lede{color:var(--muted);font-size:15px;letter-spacing:.02em;margin-bottom:6px}
@@ -61,7 +64,10 @@
 <body>
 <div id="app">
   <div class="fade">
-    <button class="pageback" type="button" onclick="if(history.length>1){history.back()}">&larr; 戻る</button>
+    <div class="backs">
+      <button class="pageback" type="button" onclick="if(history.length>1){history.back()}">&larr; 戻る</button>
+      <a class="pageback tohome" href="/">&uarr; TOPへ戻る</a>
+    </div>
     <p class="eyebrow">The Art of Temperature &amp; Distance</p>
     <h1>気になる問いから。</h1>
     <p class="lede">言葉の温度と、誰の課題を、どこまで自分に入れるか。どの問いも、8問で、いまどこに立っているかが出る。所要 約2分。ひとつ、選んでみて。</p>

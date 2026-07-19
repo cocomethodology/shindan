@@ -56,21 +56,21 @@
   .item .go{display:flex;justify-content:flex-end;margin-top:12px}
   .item .arw{font-family:var(--latin);font-size:16px;color:var(--accent);transition:transform .2s ease}
   .item:hover .arw{transform:translateX(4px)}
-  .hero-art{margin:22px 0 2px;border-radius:16px;overflow:hidden;line-height:0;
-    border:1px solid var(--line);box-shadow:0 18px 42px -26px rgba(120,86,40,.55)}
+  .hero-art{margin:10px 0 0;line-height:0}
   .hero-art img{width:100%;height:auto;display:block}
   .cast{margin-top:34px}
   .cast .cast-h{font-family:var(--latin);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
     color:var(--faint);text-align:center;margin-bottom:16px}
   .cast .col{display:flex;flex-direction:column;gap:10px}
-  .who{display:flex;align-items:center;gap:15px;background:var(--card);border:1px solid var(--line);
-    border-radius:12px;padding:14px 16px;transition:border-color .25s ease, transform .18s ease}
+  .who{position:relative;overflow:hidden;display:flex;align-items:center;min-height:104px;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;
+    transition:border-color .25s ease, transform .18s ease}
   .who:hover{border-color:var(--line-2);transform:translateY(-1px)}
-  .who .av{width:60px;height:60px;border-radius:50%;object-fit:cover;flex:0 0 auto;
-    background:#fefdfb;border:1px solid var(--line-2);box-shadow:0 6px 14px -10px rgba(120,86,40,.5)}
-  .who .meta{min-width:0}
-  .who .nm{font-family:var(--serif);font-size:16px;font-weight:600;letter-spacing:.04em}
-  .who .role{font-size:11px;letter-spacing:.14em;color:var(--faint);margin:1px 0 5px}
+  .who .fig{position:absolute;right:-8px;bottom:-10px;width:46%;max-width:220px;height:auto;
+    opacity:.96;pointer-events:none;filter:drop-shadow(0 6px 12px rgba(120,86,40,.14))}
+  .who .meta{position:relative;z-index:1;max-width:60%}
+  .who .nm{font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:.04em}
+  .who .role{font-size:11px;letter-spacing:.14em;color:var(--faint);margin:2px 0 6px}
   .who .say{font-size:13px;color:var(--muted);line-height:1.6;letter-spacing:.02em}
   .sig{margin-top:34px;font-size:12.5px;line-height:2;letter-spacing:.05em;color:var(--faint);text-align:center}
   .sig span{font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.12em}
@@ -92,7 +92,7 @@
       <p class="lede">うまくいかない原因は、熱意でも相性でもない。感情の温度と、相手との距離。その2つの立ち位置にある。温度も距離も、職場にも恋愛にも、両方ある。</p>
     </div>
     <figure class="hero-art">
-      <img src="/assets/char/hero.jpg" alt="しずく・ひより・しらたま" width="1100" height="623" loading="lazy">
+      <img src="/assets/char/hero-t.png" alt="しずく・しらたま・ひより" width="1100" height="623">
     </figure>
     <div class="rule"></div>
     <p class="choose">どちらの温度と距離を、確かめますか</p>
@@ -114,15 +114,15 @@
       <p class="cast-h">Companions</p>
       <div class="col">
         <div class="who">
-          <img class="av" src="/assets/char/shizuku.jpg" alt="しずく（亀）" width="60" height="60" loading="lazy">
+          <img class="fig" src="/assets/char/shizuku-fig.png" alt="" aria-hidden="true">
           <div class="meta"><p class="nm">しずく</p><p class="role">亀 ・ 静けさと芯</p><p class="say">「ゆっくりだって、ちゃんと進んでる。」</p></div>
         </div>
         <div class="who">
-          <img class="av" src="/assets/char/shiratama.jpg" alt="しらたま（猫）" width="60" height="60" loading="lazy">
+          <img class="fig" src="/assets/char/shiratama-fig.png" alt="" aria-hidden="true">
           <div class="meta"><p class="nm">しらたま</p><p class="role">猫 ・ 繊細と共感</p><p class="say">「だめだなぁ、って思える日も、やさしくなれる。」</p></div>
         </div>
         <div class="who">
-          <img class="av" src="/assets/char/hiyori.jpg" alt="ひより（鳥）" width="60" height="60" loading="lazy">
+          <img class="fig" src="/assets/char/hiyori-fig.png" alt="" aria-hidden="true">
           <div class="meta"><p class="nm">ひより</p><p class="role">鳥 ・ 自由と選択</p><p class="say">「このままで、飛んでいい。」</p></div>
         </div>
       </div>

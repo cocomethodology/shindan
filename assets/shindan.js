@@ -126,7 +126,8 @@
     var lede = h.lede || "8つの問いで、いまどこに立っているかが出る。所要 約2分。";
     var startSmall = h.startSmall || "1問ずつ・全8問・単一選択";
     app.innerHTML = '<div class="fade">'
-      + '<button class="hub-back" id="pageBack" type="button">&larr; 戻る</button>'
+      + '<div class="backs"><button class="hub-back" id="pageBack" type="button">&larr; 戻る</button>'
+      + '<a class="hub-back tohome" href="/">&uarr; TOPへ戻る</a></div>'
       + '<p class="eyebrow">' + eyebrow + '</p>'
       + kicker
       + '<h1>' + title + '</h1>'
@@ -155,7 +156,8 @@
       + (item.hook ? '<p class="hook">' + item.hook + '</p>' : '')
       + '<p class="qtext">' + item.q + '</p>'
       + cards
-      + '<button class="ghost" id="back">ひとつ戻る</button>'
+      + '<div class="backs"><button class="ghost" id="back">ひとつ戻る</button>'
+      + '<a class="ghost tohome" href="/">&uarr; TOPへ戻る</a></div>'
       + '</div>';
     var btns = app.querySelectorAll("[data-k]");
     for (var j = 0; j < btns.length; j++) {
@@ -213,7 +215,7 @@
       + '<div class="block"><div class="answer"><p class="a-q">' + CC.question + '</p></div></div>'
       + charBlock("center")
       + shareBlock(CC.name, CC.tag)
-      + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="' + HUB + '">診断一覧へ</a></div>'
+      + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="' + HUB + '">診断一覧へ</a><a class="ghost" href="/">&uarr; TOPへ戻る</a></div>'
       + '<p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>'
       + '</div>';
     document.getElementById("again").onclick = function () { idx = 0; answers = []; home(); window.scrollTo({ top: 0, behavior: "smooth" }); };
@@ -270,7 +272,7 @@
       + '</div>'
       + charBlock(key)
       + shareBlock(T.name, T.tag)
-      + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="' + HUB + '">診断一覧へ</a></div>'
+      + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="' + HUB + '">診断一覧へ</a><a class="ghost" href="/">&uarr; TOPへ戻る</a></div>'
       + '<p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>'
       + '</div>';
     document.getElementById("again").onclick = function () { idx = 0; answers = []; home(); window.scrollTo({ top: 0, behavior: "smooth" }); };
