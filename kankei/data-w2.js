@@ -7,6 +7,7 @@
 window.SHINDAN = {
   domainLabel: "恋愛と関係",
   hubUrl: "/kankei",
+  week: "w2",
   ctaLabel: "チームCoco ―― 恋愛と関係",
   tempNames: ["凍結", "隠す", "選ぶ", "溢れる"],
   distNames: ["閉じる", "守る", "測る", "明け渡す"],

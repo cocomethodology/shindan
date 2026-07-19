@@ -55,6 +55,21 @@
       + '<span class="sh-ico">' + icon + '</span><span>' + SHARE.label + '</span></a></div>';
   }
 
+  /* 診断完了を集計に送る（型・週・入口日のみ／個人情報なし）。D.week があるデータだけ送る。 */
+  function track(typeKey) {
+    if (!D.week) return;
+    var dom = (String(HUB).indexOf("soshiki") >= 0) ? "soshiki" : "kankei";
+    var day = (typeof CFG.start === "number") ? CFG.start : -1;
+    var payload = JSON.stringify({ dom: dom, wk: D.week, day: day, type: typeKey });
+    try {
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon("/api/track", new Blob([payload], { type: "application/json" }));
+      } else {
+        fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: payload, keepalive: true });
+      }
+    } catch (e) {}
+  }
+
   /* 結果の締めに、型に合うキャラが一言だけ寄り添う（④CTAの下・出口は割らない）。
      全肯定も処方もしない。軸は温度×距離のまま、キャラは最後の温度だけ足す。
      しずく=亀(軸・内省) / しらたま=猫(共感・自己受容) / ひより=鳥(自由・解放)。 */
@@ -211,6 +226,7 @@
   /* 5つ目の状態：中心（整っている人）。2×2は中心を表現できないため分離。 */
   function resultCenter(ts, ds) {
     var CC = D.CENTER;
+    track("center");
     var tName = nameOf(TEMP_NAMES, ts, TEMP_CUT), dName = nameOf(DIST_NAMES, ds, DIST_CUT);
     var body = CC.body.map(function (p, i) {
       return '<p' + (i === CC.body.length - 1 ? ' class="strong"' : '') + '>' + p + '</p>';
@@ -249,6 +265,7 @@
     }
     var tempHigh = ts >= TEMP_CUT, distHigh = ds >= DIST_CUT;
     var key = (tempHigh ? "H" : "L") + (distHigh ? "H" : "L");
+    track(key);
     var T = TYPES[key];
     var tName = nameOf(TEMP_NAMES, ts, TEMP_CUT), dName = nameOf(DIST_NAMES, ds, DIST_CUT);
     var px = Math.max(-1, Math.min(1, (ds / 8 - D_CENTER) / 1.3));

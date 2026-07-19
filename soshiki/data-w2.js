@@ -7,6 +7,7 @@
 window.SHINDAN = {
   domainLabel: "組織と仕事",
   hubUrl: "/soshiki",
+  week: "w2",
   ctaLabel: "チームCoco ―― 組織と仕事",
   tempNames: ["凍結", "抑える", "選ぶ", "出す"],
   distNames: ["閉じる", "守る", "測る", "抱え込む"],
