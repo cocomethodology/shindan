@@ -48,6 +48,23 @@
       + '<span class="sh-ico">' + icon + '</span><span>' + SHARE.label + '</span></a></div>';
   }
 
+  /* 結果の締めに、型に合うキャラが一言だけ寄り添う（④CTAの下・出口は割らない）。
+     全肯定も処方もしない。軸は温度×距離のまま、キャラは最後の温度だけ足す。
+     しずく=亀(軸・内省) / しらたま=猫(共感・自己受容) / ひより=鳥(自由・解放)。 */
+  var CHARS = {
+    HH: { name: "しらたま", img: "shiratama.jpg", line: "全部を渡したくなる日がある。その日の自分を、責めないで。" },
+    HL: { name: "ひより",   img: "hiyori.jpg",   line: "うまく言えなくても、ちゃんと感じてる。それだけは、ほんとうだよ。" },
+    LH: { name: "しずく",   img: "shizuku.jpg",  line: "役割の下に、あなたがいる。それを、忘れないで。" },
+    LL: { name: "しらたま", img: "shiratama.jpg", line: "閉じている日も、ここにいていい。ひとりじゃないよ。" },
+    center: { name: "しずく", img: "shizuku.jpg", line: "ゆっくりでも、ちゃんと整えてきたね。止まることも、進むうちのひとつ。" }
+  };
+  function charBlock(key) {
+    var c = CHARS[key];
+    if (!c) return "";
+    return '<div class="charword"><img class="cw-av" src="/assets/char/' + c.img + '" alt="' + c.name + '" width="48" height="48" loading="lazy">'
+      + '<p class="cw-line">「' + c.line + '」<span class="cw-name">── ' + c.name + '</span></p></div>';
+  }
+
   /* 高/低の閾値（ドメイン別）。軸は1〜4で中心=3（=適温・適距離）なので、
      レンジ中点20ではなく実分布の中央値に合わせる。現在地マップも同じ中心に補正。 */
   var TEMP_CUT = D.tempCut || 21, DIST_CUT = D.distCut || 21;
@@ -194,6 +211,7 @@
       + field(0, 0, false)
       + '<div class="block"><div class="body">' + body + '</div></div>'
       + '<div class="block"><div class="answer"><p class="a-q">' + CC.question + '</p></div></div>'
+      + charBlock("center")
       + shareBlock(CC.name, CC.tag)
       + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="' + HUB + '">診断一覧へ</a></div>'
       + '<p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>'
@@ -250,6 +268,7 @@
         + '<p>' + T.bridge + '</p>'
         + '<a class="cta" href="' + MEMBERSHIP + '" target="_blank" rel="noopener">' + D.ctaLabel + '<small>整える順番を、ひとつずつ</small></a>'
       + '</div>'
+      + charBlock(key)
       + shareBlock(T.name, T.tag)
       + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="' + HUB + '">診断一覧へ</a></div>'
       + '<p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>'

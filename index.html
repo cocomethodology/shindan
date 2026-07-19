@@ -59,16 +59,19 @@
   .hero-art{margin:22px 0 2px;border-radius:16px;overflow:hidden;line-height:0;
     border:1px solid var(--line);box-shadow:0 18px 42px -26px rgba(120,86,40,.55)}
   .hero-art img{width:100%;height:auto;display:block}
-  .cast{margin-top:32px;text-align:center}
+  .cast{margin-top:34px}
   .cast .cast-h{font-family:var(--latin);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--faint);margin-bottom:16px}
-  .cast .row{display:flex;justify-content:center;gap:clamp(20px,8vw,38px)}
-  .cast .who{display:flex;flex-direction:column;align-items:center;gap:9px}
-  .cast .av{width:clamp(66px,20vw,86px);height:clamp(66px,20vw,86px);border-radius:50%;object-fit:cover;
-    background:#fefdfb;border:1px solid var(--line-2);box-shadow:0 8px 18px -12px rgba(120,86,40,.5);
-    transition:transform .2s ease}
-  .cast .who:hover .av{transform:translateY(-2px)}
-  .cast .nm{font-family:var(--serif);font-size:14px;letter-spacing:.06em;color:var(--muted)}
+    color:var(--faint);text-align:center;margin-bottom:16px}
+  .cast .col{display:flex;flex-direction:column;gap:10px}
+  .who{display:flex;align-items:center;gap:15px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:14px 16px;transition:border-color .25s ease, transform .18s ease}
+  .who:hover{border-color:var(--line-2);transform:translateY(-1px)}
+  .who .av{width:60px;height:60px;border-radius:50%;object-fit:cover;flex:0 0 auto;
+    background:#fefdfb;border:1px solid var(--line-2);box-shadow:0 6px 14px -10px rgba(120,86,40,.5)}
+  .who .meta{min-width:0}
+  .who .nm{font-family:var(--serif);font-size:16px;font-weight:600;letter-spacing:.04em}
+  .who .role{font-size:11px;letter-spacing:.14em;color:var(--faint);margin:1px 0 5px}
+  .who .say{font-size:13px;color:var(--muted);line-height:1.6;letter-spacing:.02em}
   .sig{margin-top:34px;font-size:12.5px;line-height:2;letter-spacing:.05em;color:var(--faint);text-align:center}
   .sig span{font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.12em}
   .fade{animation:fade .6s ease both}
@@ -109,10 +112,19 @@
     </nav>
     <div class="cast">
       <p class="cast-h">Companions</p>
-      <div class="row">
-        <div class="who"><img class="av" src="/assets/char/shizuku.jpg" alt="しずく" width="86" height="86" loading="lazy"><span class="nm">しずく</span></div>
-        <div class="who"><img class="av" src="/assets/char/hiyori.jpg" alt="ひより" width="86" height="86" loading="lazy"><span class="nm">ひより</span></div>
-        <div class="who"><img class="av" src="/assets/char/shiratama.jpg" alt="しらたま" width="86" height="86" loading="lazy"><span class="nm">しらたま</span></div>
+      <div class="col">
+        <div class="who">
+          <img class="av" src="/assets/char/shizuku.jpg" alt="しずく（亀）" width="60" height="60" loading="lazy">
+          <div class="meta"><p class="nm">しずく</p><p class="role">亀 ・ 静けさと芯</p><p class="say">「ゆっくりだって、ちゃんと進んでる。」</p></div>
+        </div>
+        <div class="who">
+          <img class="av" src="/assets/char/shiratama.jpg" alt="しらたま（猫）" width="60" height="60" loading="lazy">
+          <div class="meta"><p class="nm">しらたま</p><p class="role">猫 ・ 繊細と共感</p><p class="say">「だめだなぁ、って思える日も、やさしくなれる。」</p></div>
+        </div>
+        <div class="who">
+          <img class="av" src="/assets/char/hiyori.jpg" alt="ひより（鳥）" width="60" height="60" loading="lazy">
+          <div class="meta"><p class="nm">ひより</p><p class="role">鳥 ・ 自由と選択</p><p class="say">「このままで、飛んでいい。」</p></div>
+        </div>
       </div>
     </div>
     <p class="sig">ネイル・飲食・BAR運営20年。延べ5万人超との対話から。<br><span>Coco Methodology</span></p>
