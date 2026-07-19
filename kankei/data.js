@@ -12,7 +12,9 @@ window.SHINDAN = {
     label: "この結果をThreadsに共有",
     url: "https://shindan-flax.vercel.app/kankei",
     handle: "@coconocanvas",
-    hashtag: "温度と距離"
+    hashtag: "温度と距離",
+    axisTemp: "感情の出し方",
+    axisDist: "相手の入れ方"
   },
   center: { t: 24, d: 24, r: 1 },   /* 中心＝マンハッタン距離|Δ|≤1（24/24から1問だけズレた人まで）。4^8で出現率10.9% */
   CENTER: {

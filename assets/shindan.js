@@ -26,16 +26,23 @@
   var SHARE = D.share || null;
   var X_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.65l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>';
   var TH_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.85 13.85 0 0 1 3.02.142c-.126-.742-.375-1.332-.742-1.762-.502-.588-1.279-.889-2.309-.896h-.028c-.826 0-1.951.227-2.667 1.297L9.145 8.102c.955-1.412 2.5-2.088 4.226-2.088h.043c2.881.017 4.59 1.816 4.759 4.965.096.041.19.084.284.129 1.331.626 2.303 1.573 2.813 2.74.71 1.626.776 4.281-1.632 6.643-1.842 1.804-4.075 2.618-7.253 2.641z"/></svg>';
-  function shareBlock(typeName, tagline) {
+  /* シェア文：型と2軸を結びつけて「何がわかる診断か」を伝える。
+     温度（感情の出し方）と距離（相手の入れ方）の読みを見せ、型の一言を"だから"の結論として置く。 */
+  function shareBlock(typeName, tagline, temp, dist) {
     if (!SHARE) return "";
     var dl = D.domainLabel || "";
     var tag = (tagline || "").replace(/<[^>]+>/g, "");
+    var at = SHARE.axisTemp || "感情の出し方", ad = SHARE.axisDist || "相手の入れ方";
     var lines = [
-      "【" + dl + "の 温度×距離 診断】",
+      "【" + dl + "の“温度×距離”診断】",
       "わたしは「" + typeName + "」でした。",
+      "",
+      "温度（" + at + "）── " + (temp || "—"),
+      "距離（" + ad + "）── " + (dist || "—"),
+      "",
       tag,
       "",
-      "あなたは、どこに立っている？",
+      "あなたは、どこに立ってる？ 8問・2分で出る。",
       (SHARE.handle ? SHARE.handle + " " : "") + "#" + (SHARE.hashtag || "温度と距離")
     ];
     var text = lines.join("\n");
@@ -52,16 +59,16 @@
      全肯定も処方もしない。軸は温度×距離のまま、キャラは最後の温度だけ足す。
      しずく=亀(軸・内省) / しらたま=猫(共感・自己受容) / ひより=鳥(自由・解放)。 */
   var CHARS = {
-    HH: { name: "しらたま", img: "shiratama.jpg", line: "全部を渡したくなる日がある。その日の自分を、責めないで。" },
-    HL: { name: "ひより",   img: "hiyori.jpg",   line: "うまく言えなくても、ちゃんと感じてる。それだけは、ほんとうだよ。" },
-    LH: { name: "しずく",   img: "shizuku.jpg",  line: "役割の下に、あなたがいる。それを、忘れないで。" },
-    LL: { name: "しらたま", img: "shiratama.jpg", line: "閉じている日も、ここにいていい。ひとりじゃないよ。" },
-    center: { name: "しずく", img: "shizuku.jpg", line: "ゆっくりでも、ちゃんと整えてきたね。止まることも、進むうちのひとつ。" }
+    HH: { name: "しらたま", img: "shiratama-fig.png", line: "全部を渡したくなる日がある。その日の自分を、責めないで。" },
+    HL: { name: "ひより",   img: "hiyori-fig.png",   line: "うまく言えなくても、ちゃんと感じてる。それだけは、ほんとうだよ。" },
+    LH: { name: "しずく",   img: "shizuku-fig.png",  line: "役割の下に、あなたがいる。それを、忘れないで。" },
+    LL: { name: "しらたま", img: "shiratama-fig.png", line: "閉じている日も、ここにいていい。ひとりじゃないよ。" },
+    center: { name: "しずく", img: "shizuku-fig.png", line: "ゆっくりでも、ちゃんと整えてきたね。止まることも、進むうちのひとつ。" }
   };
   function charBlock(key) {
     var c = CHARS[key];
     if (!c) return "";
-    return '<div class="charword"><img class="cw-av" src="/assets/char/' + c.img + '" alt="' + c.name + '" width="48" height="48" loading="lazy">'
+    return '<div class="charword"><img class="cw-fig" src="/assets/char/' + c.img + '" alt="" aria-hidden="true">'
       + '<p class="cw-line">「' + c.line + '」<span class="cw-name">── ' + c.name + '</span></p></div>';
   }
 
@@ -214,7 +221,7 @@
       + '<div class="block"><div class="body">' + body + '</div></div>'
       + '<div class="block"><div class="answer"><p class="a-q">' + CC.question + '</p></div></div>'
       + charBlock("center")
-      + shareBlock(CC.name, CC.tag)
+      + shareBlock(CC.name, CC.tag, "ちょうど中心", "ちょうど中心")
       + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="' + HUB + '">診断一覧へ</a><a class="ghost" href="/">&uarr; TOPへ戻る</a></div>'
       + '<p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>'
       + '</div>';
@@ -271,7 +278,7 @@
         + '<a class="cta" href="' + MEMBERSHIP + '" target="_blank" rel="noopener">' + D.ctaLabel + '<small>整える順番を、ひとつずつ</small></a>'
       + '</div>'
       + charBlock(key)
-      + shareBlock(T.name, T.tag)
+      + shareBlock(T.name, T.tag, tempHigh ? "高い" : "低い", distHigh ? "近い" : "遠い")
       + '<div class="result-nav"><button class="ghost" id="again">もう一度診断する</button><a class="ghost" href="' + HUB + '">診断一覧へ</a><a class="ghost" href="/">&uarr; TOPへ戻る</a></div>'
       + '<p class="sig">感情はある。依存はしない。<br><span>Coco Methodology</span></p>'
       + '</div>';

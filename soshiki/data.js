@@ -14,7 +14,9 @@ window.SHINDAN = {
     label: "この結果をXに共有",
     url: "https://shindan-flax.vercel.app/soshiki",
     handle: "@coconocanvas",
-    hashtag: "温度と距離"
+    hashtag: "温度と距離",
+    axisTemp: "言葉の強さ",
+    axisDist: "課題の引き受け方"
   },
   center: { t: 24, d: 24, r: 1 },   /* 中心＝マンハッタン距離|Δ|≤1（24/24から1問だけズレた人まで）。4^8で出現率3.4% */
   CENTER: {
