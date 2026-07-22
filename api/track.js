@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
   if (typeof body === "string") { try { body = JSON.parse(body); } catch (e) { body = {}; } }
   if (!body || typeof body !== "object") body = {};
 
-  var DOMS = ["kankei", "soshiki"], WKS = ["w1", "w2"], TYPES = ["HH", "HL", "LH", "LL", "center"];
+  var DOMS = ["kankei", "soshiki"], WKS = ["w1", "w2", "w3"], TYPES = ["HH", "HL", "LH", "LL", "center"];
   var dom = DOMS.indexOf(body.dom) >= 0 ? body.dom : null;
   var wk = WKS.indexOf(body.wk) >= 0 ? body.wk : null;
   var type = TYPES.indexOf(body.type) >= 0 ? body.type : null;

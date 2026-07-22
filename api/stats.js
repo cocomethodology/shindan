@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
 
   try {
     var out = {};
-    var doms = ["kankei", "soshiki"], wks = ["w1", "w2"];
+    var doms = ["kankei", "soshiki"], wks = ["w1", "w2", "w3"];
     for (var a = 0; a < doms.length; a++) {
       out[doms[a]] = {};
       for (var b = 0; b < wks.length; b++) {

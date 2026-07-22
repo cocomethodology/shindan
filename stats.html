@@ -58,10 +58,10 @@ var TYPE_NAMES = {
   soshiki:{ HH:"背負う", HL:"こらえる", LH:"引き取る", LL:"離れる", center:"保つ" }
 };
 var DOM_LABEL = { kankei:"恋愛と関係", soshiki:"組織と仕事" };
-var WK_DATES = { w1:["07-14","07-15","07-16","07-17","07-18","07-19","07-20"], w2:["07-21","07-22","07-23","07-24","07-25","07-26","07-27"] };
+var WK_DATES = { w1:["07-14","07-15","07-16","07-17","07-18","07-19","07-20"], w2:["07-21","07-22","07-23","07-24","07-25","07-26","07-27"], w3:["07-28","07-29","07-30","07-31","08-01","08-02","08-03"] };
 var params = new URLSearchParams(location.search);
 var KEY = params.get("key") || "";
-var state = { dom: "kankei", wk: "w2", data: null };
+var state = { dom: "kankei", wk: "w3", data: null };
 
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
 
@@ -81,7 +81,7 @@ function render(){
   var s = state.data.stats;
   var tabs = '<div class="tabs">'
     + tab("kankei","恋愛") + tab("soshiki","組織")
-    + '<span style="width:14px"></span>' + tabW("w2","今週 7/21–27") + tabW("w1","先週 7/14–20")
+    + '<span style="width:14px"></span>' + tabW("w3","今週 7/28–8/3") + tabW("w2","7/21–27") + tabW("w1","7/14–20")
     + '</div>';
 
   var d = (s[state.dom] && s[state.dom][state.wk]) || { total:0, type:{}, entry:{}, daytype:{} };
@@ -126,9 +126,10 @@ function tabW(wk,label){ return '<button class="tab'+(state.wk===wk?" on":"")+'"
 function demoData(){
   var mk = function(t){ return { total: t.reduce(function(a,b){return a+b;},0), type:{HH:t[0],HL:t[1],LH:t[2],LL:t[3],center:t[4]},
     entry:{"0":9,"1":6,"2":7,"3":11,"4":5,"5":8,"6":6,"-1":2}, daytype:{} }; };
+  var empty = {total:0,type:{},entry:{},daytype:{}};
   return { configured:true, demo:true, stats:{
-    kankei:{ w2: mk([7,8,8,10,13]), w1:{total:0,type:{},entry:{},daytype:{}} },
-    soshiki:{ w2: mk([10,7,8,10,13]), w1:{total:0,type:{},entry:{},daytype:{}} } } };
+    kankei:{ w3: mk([7,8,8,10,13]), w2: empty, w1: empty },
+    soshiki:{ w3: mk([10,7,8,10,13]), w2: empty, w1: empty } } };
 }
 function load(){
   if (params.get("demo")){ state.data = demoData(); render(); return; }
